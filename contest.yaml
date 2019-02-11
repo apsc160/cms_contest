@@ -1,0 +1,26 @@
+# Contest basics
+name: "apsc160_practice"
+description: "APSC 160: Practice and Contest"
+languages:
+  - "C11 / gcc"
+
+# Restrictions
+allow_questions: false
+allow_user_tests: false
+allow_registration: true
+ip_restriction: false
+
+# Official contest times
+token_mode: infinite
+start: "2019-03-01 08:00:00"
+stop: "2019-04-03 08:00:00"
+timezone: "America/Vancouver"
+
+# Exam practice (after official contest ends)
+analysis_enabled: true
+analysis_start: "2019-04-03 08:00:00"
+analysis_stop: "2019-05-01 08:00:00"
+
+# List of tasks
+tasks:
+  - "DAQ_01_GeneralFramework"

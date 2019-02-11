@@ -1,0 +1,15 @@
+# Build files
+*build*
+/cmake-build-*
+/.idea/
+Debug/
+*.vcxproj*
+.vs/
+*.sln
+*.vscode
+
+# Compiled statements
+statement.pdf
+
+# Solution source files
+*/solution/*.c

@@ -1,0 +1,15 @@
+Enter the setup number for the DAQ:                                  
+                                 
+                                 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+The DAQ is running
+                                 
+                                 
+                                 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+The DAQ is running
+                                 
+                                 
+                                 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+The DAQ is closing

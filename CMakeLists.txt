@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.2)
+
+set(CMAKE_C_STANDARD 99)
+
+project(DAQ_contest)
+
+include(CTest)
+add_executable(runtest test/runtest.c)
+
+include_directories(include)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+# generate output files and the redirect command for redirecting inputs/outputs
+set(OUTPUT_FILES)
+set(STATEMENT_PDFS)
+
+add_subdirectory(DAQ_01_GeneralFramework)
+
+add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
+add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
