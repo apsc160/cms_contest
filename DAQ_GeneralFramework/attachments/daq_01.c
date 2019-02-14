@@ -17,11 +17,9 @@ int main(void)
   /* TODO: prompt user for setup number */
 
   if ( FALSE /* TODO: setup DAQ and check if successful */ ) {
-    controlLoop();
+    /* TODO: call the control loop function */
   } else {
-
     /* TODO: print error statement */
-
   }
 
   return 0;

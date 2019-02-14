@@ -1,9 +1,4 @@
-Enter the setup number for the DAQ:                                  
-                                 
-                                 
- ___ ___ ___ ___ ___ ___ ___ ___ 
-The DAQ is running
-                                 
+Enter the DAQ setup number:                                  
                                  
                                  
  ___ ___ ___ ___ ___ ___ ___ ___ 

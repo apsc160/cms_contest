@@ -14,10 +14,10 @@ It is your job to write the main program that handles device setup, I/O, and pro
 Your program first needs to initialize the device with a "setup" number.  The DAQ has a set of pre-configured device layouts consisting of sensors and display components. The setup number informs the system which of these layouts to use for the current program.  Your program should then check whether the device is ready to process inputs/ouputs, and continue to loop and process data until the device has been shut-down.
 
 Complete the program details, marked `TODO` in the template below:
-- prompt the user to enter a setup number with the expression `"Enter the setup number for the DAQ: "`
+- prompt the user to enter a setup number with the expression `"Enter the DAQ setup number: "`
 - initialize the device using the supplied setup number, and check if it was successful
   - if successful, call the control loop function
-  - otherwise, print the error message `"ERROR: Cannot initialize the DAQ\n"`
+  - otherwise, print the error message `"ERROR: cannot initialize the DAQ\n"`
 - in a loop, continuously check whether the device is ready to process inputs/ouputs until the device has been shut-down
 
 ```c
@@ -40,11 +40,9 @@ int main(void)
   /* TODO: prompt user for setup number */
 
   if ( FALSE /* TODO: setup DAQ and check if successful */ ) {
-    controlLoop();
+    /* TODO: call the control loop function */
   } else {
-
     /* TODO: print error statement */
-
   }
 
   return 0;
@@ -67,7 +65,7 @@ You are provided two functions:
 - `int setupDAQ(int setupNum)`: initializes the device with the given configuration
 - `int continueSuperLoop(void)`: checks if the device is ready for processing
 
-Both return either `TRUE (1)` for success, or `FALSE (0)` for failure.
+Both return either `TRUE` (1) for success, or `FALSE` (0) for failure.
 
 ---
 ## Evaluation
@@ -79,7 +77,7 @@ Each time `continueSuperLoop()` is called,
 - the current device outputs are printed to standard output (`stdout`)
 - the sensor values are read in from standard input (`stdin`)
 
-If there are no more lines of input, or if the next input line contains an invalid character, then `continueSuperLoop()` will return `FALSE (0)`, signalling that your control loop should exit. 
+If there are no more lines of input, or if the next input line contains an invalid character, then `continueSuperLoop()` will return `FALSE` (0), signalling that your control loop should exit. 
 
 ## Input Format
 
@@ -94,6 +92,8 @@ Each following line in corresponds to the values of the input sensors at the beg
 **NOTE:** most of the output is handled for you by the provided `DAQlib` library.
 
 Whenever `continueSuperLoop()` is called, a collection of 1 to 5 lines will be printed, depending on the output devices attached to the DAQ.  Digital/analog outputs will be printed first on a single line (if available).  If the device contains a seven-segment display, then an additional four lines are printed to show the values of the displays.
+
+---
 
 ## Sample 0
 
@@ -128,6 +128,8 @@ The expected output first displays the prompt for a setup number.  The hardware 
 
 The first set of four lines indicate that the displays are all off when the program starts and `continueSuperLoop()` is called for the first time.  Since there is one line of valid inputs, the control loop should execute once successfully, printing `"The DAQ is running"`.  The second set of four lines corresponds to display values after that first iteration, when `continueSuperLoop()` is called for a second time.  Since there are no more valid lines of input, this function will return `FALSE` and the loop should exit, printing `"The DAQ is closing"`.
 
+---
+
 ## Sample 1
 
 ### Input
@@ -139,7 +141,7 @@ The first set of four lines indicate that the displays are all off when the prog
 ### Output
 
 ```default
-Enter the setup number for the DAQ: 
+Enter the DAQ setup number: 
  0 0 0
 The DAQ is running
  0 0 0
@@ -152,6 +154,8 @@ The DAQ with configuration 2 contains two digital input switches and three digit
 
 At the beginning of the first super-loop, when `continueSuperLoop()` is called for the first time, all LEDs are initially off (`0`).  Since there is one line of valid inputs, `continueSuperLoop()` will read in the values of the switches and return `TRUE`, causing the super-loop to execute and print the line `"The DAQ is running`.  The second time `continueSuperLoop()` is called, it prints the current values for the output LEDs.  Since there are no more valid lines of input, `continueSuperLoop()` returns `FALSE`, and the loop exists, printing `"The DAQ is closing"`.
 
+---
+
 ## Sample 2
 
 ### Input
@@ -162,13 +166,15 @@ At the beginning of the first super-loop, when `continueSuperLoop()` is called f
 ### Output
 
 ```default
-Enter the setup number for the DAQ: 
-ERROR: Cannot initialize the DAQ
+Enter the DAQ setup number: 
+ERROR: cannot initialize the DAQ
 ```
 
 ### Explanation
 
 There is no valid configuration for setup number 99, so initialization fails and the error message is printed.
+
+---
 
 ## Sample 3
 
@@ -181,7 +187,7 @@ There is no valid configuration for setup number 99, so initialization fails and
 
 ### Output
 ```default
-Enter the setup number for the DAQ: 
+Enter the DAQ setup number: 
 
                                  
                                  

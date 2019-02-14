@@ -15,7 +15,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set(OUTPUT_FILES)
 set(STATEMENT_PDFS)
 
-add_subdirectory(DAQ_01_GeneralFramework)
+add_subdirectory(DAQ_GeneralFramework)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
 add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
