@@ -24,8 +24,7 @@ sudo apt install build-essential postgresql postgresql-client python3.6 \
 sudo pip3 install virtualenv
 ```
 
-<div class=notice markdown="1" style="background-color:#888855; padding: 10px">
-
+<span class="notice" style="display: block; background-color:#888855; padding: 10px">
 For Ubuntu 14.04 and earlier, the versions of `python` and `postgresql` are too outdated for `cms`.  You will need to update `python` to at least version 3.6, and `postgresql` to at least version 9.4.
 
 To update and install `python`,
@@ -42,8 +41,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 sudo apt-get update
 sudo apt install postgresql postgresql-client
 ```
-
-</div>
+</span>
 
 ### Configure Daemon User and Database
 
@@ -116,8 +114,7 @@ python3 prerequisites.py install
 python3 setup.py install
 ```
 
-<div class=notice markdown="1" style="background-color:#888855; padding: 10px">
-
+<span class="notice" markdown="1" style="display:block; background-color:#888855; padding: 10px">
 **Note:**  if your temporary directory is mounted as `noexec` then you may receive a warning about your environment not being able to run compiled executables.  To circumvent this, temporarily redirect the `TMPDIR` to a local location,
 
 ```bash
@@ -126,8 +123,7 @@ export TMPDIR=~/tmp
 ```
 
 then try again.
-
-</div>
+</span>
 
 ### Configuring CMS
 
