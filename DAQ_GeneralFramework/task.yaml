@@ -1,10 +1,12 @@
 # Task basics
-name: "DAQ_01_GeneralFramework"
-title: "DAQ 01: The DAQ General Framework"
-
-submission_format: "daq_01.%l"
+name: "DAQ_GeneralFramework"
+title: "The DAQ General Framework"
+num: 10
+submission_format: 
+        - "daq_01.%l"
 
 # Restrictions
+token_mode: "disabled"
 time_limit: 5
 memory_limit: 256
 
@@ -12,7 +14,7 @@ memory_limit: 256
 infile: ""
 outfile: ""
 score_type: "Sum"
-score_type_parameters: "10"
+score_type_parameters: 10
 
 testcases:
   - {codename: "00", input: "input/input00.txt", output: "output/output00.txt", public: true}

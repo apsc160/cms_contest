@@ -1,0 +1,1 @@
+Enter the DAQ setup number: ERROR: cannot initialize the DAQ

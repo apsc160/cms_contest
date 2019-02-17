@@ -1,0 +1,3 @@
+#include <DAQlib.h>
+
+/* nothing */

@@ -12,7 +12,7 @@ ip_restriction: false
 
 # Official contest times
 token_mode: infinite
-start: "2019-03-01 08:00:00"
+start: "2019-01-01 08:00:00"
 stop: "2019-04-03 08:00:00"
 timezone: "America/Vancouver"
 
@@ -23,4 +23,4 @@ analysis_stop: "2019-05-01 08:00:00"
 
 # List of tasks
 tasks:
-  - "DAQ_01_GeneralFramework"
+  - "DAQ_GeneralFramework"

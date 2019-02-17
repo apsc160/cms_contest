@@ -7,9 +7,11 @@ Debug/
 .vs/
 *.sln
 *.vscode
+.itime*
 
 # Compiled statements
 statement.pdf
 
 # Solution source files
 */solution/*.c
+
