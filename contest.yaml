@@ -23,4 +23,6 @@ analysis_stop: "2019-05-01 08:00:00"
 
 # List of tasks
 tasks:
-  - "DAQ_GeneralFramework"
+  - intro_addition
+  - intro_fileio
+  - intro_regression
