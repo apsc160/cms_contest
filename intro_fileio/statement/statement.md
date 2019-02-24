@@ -27,4 +27,3 @@ Write the sum to the first line of the output file `sum.txt`.
 ```default
 15
 ```
----

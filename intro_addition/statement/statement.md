@@ -18,4 +18,3 @@ The sum $x + y$ should be printed on a single line, followed by a newline
 ```default
 42
 ```
----
