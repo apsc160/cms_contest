@@ -13,5 +13,5 @@ Debug/
 statement.pdf
 
 # Solution source files
-*/solution/*.c
+# */solution/*.c
 
