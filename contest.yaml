@@ -25,4 +25,5 @@ analysis_stop: "2019-05-01 08:00:00"
 tasks:
   - intro_addition
   - intro_fileio
+  - intro_functions
   - intro_regression
