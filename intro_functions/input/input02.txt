@@ -1,0 +1,2 @@
+printCheckerLine 10 1 2 A
+printCheckerBoard 50 50 # 0

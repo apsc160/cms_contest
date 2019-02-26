@@ -1,0 +1,4 @@
+printCheckerLine 9 9 1 2
+printCheckerLine 10 10 3 4
+printCheckerBoard 1 1 A x
+printCheckerBoard 0 0 A B
