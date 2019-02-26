@@ -103,13 +103,11 @@ _#_#_#_#_#_#_#_
 
 Your submission should include the *function prototype* for `printChars(...)` **(do not include its implementation)**, as well as the implementation of your two added functions `printCheckerLine(...)` and `printCheckerBoard(...)`.  Do not include a `main` function: that will be handled for you behind-the-scenes.  Since you will be using the `printf(...)` function, you must include the `<stdio.h>` header file, even though you are not submitting a `main` function.  See the attached code template `checkerboard.c`.
 
-To test your functions at home, see the sample `checkerboard_main.c` file in the attachments sections.
-
 ---
 
 ### Sample Output
 
-Consider the given sequence of commands
+Consider the sequence of commands
 ```c
 /* test our print functions */
 printCheckerLine(2, 2, 'A', 'B');
@@ -121,7 +119,7 @@ printCheckerBoard(3, 4, 'x', 'o');
 printCheckerBoard(1, 15, '#', '_');
 ```
 
-The resulting output should match precisely the following:
+The resulting output should precisely match the following:
 
 ```default
 AABB
@@ -160,4 +158,10 @@ _#_#_#_#_#_#_#_
 #_#_#_#_#_#_#_#
 ```
 
-Be sure to match all newlines and spacings.
+---
+
+### Testing
+
+To test your functions at home, see the sample `checkerboard_main.c` file in the attachments sections.  You can include this file alongside `checkerboard.c` in your project in Visual Studio or Xcode.  Both files must belong to the project in order to be compiled together.  When multiple files are added to a project, they are compiled and linked into a single program.  
+
+When submitting, only submit the `checkerboard.c` file.  If you receive a compile error related to multiple definitions, it is because you included a `main(..)` function or the implementation to `printChars(...)` when you were asked not to.
