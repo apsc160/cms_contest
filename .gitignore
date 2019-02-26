@@ -1,20 +1,9 @@
-# Build files
-*build*
-/cmake-build-*
-/.idea/
-Debug/
-*.vcxproj*
-.vs/
-*.sln
-*.vscode
-.itime*
-
-# Compiled statements
-statement.pdf
-
 # ignore everything
 * 
 
-# Except for solution source files
+# account for a subdirectory
+!*/
+
+# except for solution source files
 !*/solution/*.c
 
