@@ -104,3 +104,60 @@ _#_#_#_#_#_#_#_
 Your submission should include the *function prototype* for `printChars(...)` **(do not include its implementation)**, as well as the implementation of your two added functions `printCheckerLine(...)` and `printCheckerBoard(...)`.  Do not include a `main` function: that will be handled for you behind-the-scenes.  Since you will be using the `printf(...)` function, you must also include the `<stdio.h>` header file, even though you are not submitting a `main` function.  See the attached code template `checkerboard.c`.
 
 To test your functions at home, see the sample template in the attachments sections.
+
+---
+
+### Sample Usage
+
+The given sequence of commands
+```c
+/* test our print functions */
+printCheckerLine(2, 2, 'A', 'B');
+printCheckerLine(3, 4, 'x', 'o');
+printCheckerLine(1, 15, '#', '_');
+
+printCheckerBoard(2, 2, 'A', 'B');
+printCheckerBoard(3, 4, 'x', 'o');
+printCheckerBoard(1, 15, '#', '_');
+```
+
+should result in precisely the following output:
+
+```default
+AABB
+xxxoooxxxooo
+#_#_#_#_#_#_#_#
+AABB
+AABB
+BBAA
+BBAA
+xxxoooxxxooo
+xxxoooxxxooo
+xxxoooxxxooo
+oooxxxoooxxx
+oooxxxoooxxx
+oooxxxoooxxx
+xxxoooxxxooo
+xxxoooxxxooo
+xxxoooxxxooo
+oooxxxoooxxx
+oooxxxoooxxx
+oooxxxoooxxx
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+_#_#_#_#_#_#_#_
+#_#_#_#_#_#_#_#
+```
+
+Be sure to match all newlines and spacings.

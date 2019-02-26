@@ -17,6 +17,7 @@ set(STATEMENT_PDFS)
 
 add_subdirectory(intro_addition)
 add_subdirectory(intro_fileio)
+add_subdirectory(intro_functions)
 add_subdirectory(intro_regression)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})

@@ -28,11 +28,11 @@ void printChars(int size, char c )
 int main(void)
 {
 	/* test our print functions */
-	printCheckerLine(2, 2, 'A', 'B');
+    printCheckerLine(2, 2, 'A', 'B');
     printCheckerLine(3, 4, 'x', 'o');
     printCheckerLine(1, 15, '#', '_');
 
-	printCheckerBoard(2, 2, 'A', 'B');
+    printCheckerBoard(2, 2, 'A', 'B');
     printCheckerBoard(3, 4, 'x', 'o');
     printCheckerBoard(1, 15, '#', '_');
 
