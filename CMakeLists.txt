@@ -16,6 +16,7 @@ set(OUTPUT_FILES)
 set(STATEMENT_PDFS)
 
 add_subdirectory(intro_addition)
+add_subdirectory(intro_search)
 add_subdirectory(intro_fileio)
 add_subdirectory(intro_functions)
 add_subdirectory(intro_regression)
