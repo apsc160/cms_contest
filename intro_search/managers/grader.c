@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* function prototypes */
 int search(int value, int array[], int arraySize);
@@ -37,6 +38,7 @@ int main(void)
 
 		/* search for value */
 		found = search(value, array, searchSize);
+		printf("%d\n", found);
 
 		/* deallocate */
 		free(array);
