@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* function prototypes */
 int search(int value, int array[], int arraySize);
@@ -20,23 +21,25 @@ int main(void)
 	int arraySize = 0;
 	int searchSize = 0;
 	int *array = NULL;
+	int nscan = 0;
 
 	/* number of tests */
-	scanf("%d", &numTests);
+	nscan = scanf("%d", &numTests);
 	for (i = 0; i < numTests; ++i) {
 
-		scanf("%d", &arraySize);
+		nscan = scanf("%d", &arraySize);
 		array = (int*)malloc(arraySize*sizeof(int));
 
 		for (j = 0; j < arraySize; ++j) {
-			scanf("%d", &array[j]);
+			nscan = scanf("%d", &array[j]);
 		}
 
-		scanf("%d", &value);
-		scanf("%d", &searchSize);
+		nscan = scanf("%d", &value);
+		nscan = scanf("%d", &searchSize);
 
 		/* search for value */
 		found = search(value, array, searchSize);
+		printf("%d\n", found);
 
 		/* deallocate */
 		free(array);
