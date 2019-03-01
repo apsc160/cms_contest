@@ -1,3 +1,0 @@
-#include <DAQlib.h>
-
-/* nothing */

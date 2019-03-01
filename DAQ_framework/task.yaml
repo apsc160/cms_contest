@@ -1,9 +1,9 @@
 # Task basics
-name: "DAQ_GeneralFramework"
+name: "daq_framework"
 title: "The DAQ General Framework"
-num: 10
+category: "DAQ"
 submission_format: 
-        - "daq_01.%l"
+        - "daq_framework.%l"
 
 # Restrictions
 token_mode: "disabled"
