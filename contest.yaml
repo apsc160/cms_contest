@@ -27,4 +27,5 @@ tasks:
   - intro_search
   - intro_fileio
   - intro_functions
+  - intro_magic
   - intro_regression
