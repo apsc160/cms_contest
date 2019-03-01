@@ -1,14 +1,12 @@
 A [magic square](https://en.wikipedia.org/wiki/Magic_square) is an $n\times n$ arrangement of the numbers $1$ to $n^2$ such that every row, column, and the two main diagonals have the exact same sum.  For example, 
 
-<table border="1" align="center">
+<table border="1" align="center" cellpadding="10" style="margin-top:1em; margin-bottom: 1em">
 	<tr><td>4</td><td>9</td><td>2</td></tr>
 	<tr><td>3</td><td>5</td><td>7</td></tr>
 	<tr><td>8</td><td>1</td><td>6</td></tr>
 </table>
 
 is a magic square for $n = 3$.  The square contains all values from 1 to 9, and each row, column and both diagonals add up to 15.
-
-### Task:
 
 You are to write a function 
 ```c
@@ -37,7 +35,7 @@ See the following examples:
 int square1[MAX_N][MAX_N] = {
 		{4, 9, 2},
 		{3, 5, 7},
-		{9, 1, 6}};
+		{8, 1, 6}};
 
 int square2[MAX_N][MAX_N] = {
 		{20,  6,  7, 17},
