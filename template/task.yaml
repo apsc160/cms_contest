@@ -2,7 +2,7 @@
 name: ""
 category: ""
 title: ""
-num: 0
+release_time: "2019-01-01 08:00:00"
 submission_format: 
         - "solution.%l"
 
