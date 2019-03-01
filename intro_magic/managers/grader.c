@@ -22,15 +22,16 @@ int main(void)
 	int i, j, t;
 	int T = 0;
 	int N = 0;
+	int nscan = 0;
 	int square[MAX_N][MAX_N];
 	int check = FALSE;
 
-	scanf("%d", &T);
+	nscan = scanf("%d", &T);
 	for (t = 0; t < T; ++t) {
-		scanf("%d", &N);
+		nscan = scanf("%d", &N);
 		for (i = 0; i < N; ++i) {
 			for (j = 0; j < N; ++j) {
-				scanf("%d", &square[i][j]);
+				nscan = scanf("%d", &square[i][j]);
 			}
 		}
 
