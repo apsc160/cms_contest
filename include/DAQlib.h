@@ -186,9 +186,6 @@ static int __daq_read_inputs(void) {
 /*  print DAQ outputs to stdout */
 static void __daq_print_outputs(void) {
 
-  /* setup number */
-  /* printf("%d", __daq.setup_number); */
-  
   /*  digital output */
   if (__daq.digital_outputs_size > 0) {
     int i;

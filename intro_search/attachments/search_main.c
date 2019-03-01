@@ -14,7 +14,7 @@ int main(void)
 
 	/* sample 2 */
 	int vals2[] = {1, 2, 3, 4, 4, 3, 2, 1};
-	int idx2 = search(4, vals2, 7);
+	int idx2 = search(4, vals2, 8);
 	printf("%d\n", idx2);
 
 	/* sample 3 */
