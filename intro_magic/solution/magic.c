@@ -1,15 +1,14 @@
 /* symbolic constants */
-#define MAX_N 1000
+#define MAX_N 100
 #define TRUE  1
 #define FALSE 0
+
+#include <stdio.h>
 
 /* checks if a square is magical */
 int isMagicSquare(int square[MAX_N][MAX_N], int n)
 {
-
-	/* check for 1 to n^2 */
-
-	/* slow */
+	/* slow n^4 check for 1 to n^2 */
 	int n2 = n*n;
 	for (int k = 1; k <= n2; ++k) {
 		int found = FALSE;
@@ -26,17 +25,11 @@ int isMagicSquare(int square[MAX_N][MAX_N], int n)
 		}
 	}
 
-	/* int speedcheck[MAX_N*MAX_N]; */
-
-	/* determine common sum */
+	/* determine diagonal sums */
 	int sum = 0;
-	for (int i=0; i<n; ++i) {
-		sum += square[i][i];
-	}
-
-	/* check opposite diagonal */
 	int diagsum = 0;
 	for (int i=0; i<n; ++i) {
+		sum += square[i][i];
 		diagsum += square[i][n-i-1];
 	}
 	if (diagsum != sum) {
@@ -59,5 +52,4 @@ int isMagicSquare(int square[MAX_N][MAX_N], int n)
 	}
 
 	return TRUE;
-
 }

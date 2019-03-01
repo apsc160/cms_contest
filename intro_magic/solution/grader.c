@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /* symbolic constants */
-#define MAX_N 1000
+#define MAX_N 100
 #define TRUE  1
 #define FALSE 0
 
@@ -30,7 +30,7 @@ int main(void)
 		scanf("%d", &N);
 		for (i = 0; i < N; ++i) {
 			for (j = 0; j < N; ++j) {
-				scanf("%d", &square[i][j]);
+				scanf("%d", &(square[i][j]));
 			}
 		}
 
