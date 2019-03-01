@@ -15,7 +15,7 @@ int main(void)
     int square1[MAX_N][MAX_N] = {
             {4, 9, 2},
             {3, 5, 7},
-            {9, 1, 6}};
+            {8, 1, 6}};
 
     /* should print TRUE */
     int check1 = isMagicSquare(square1, 3);

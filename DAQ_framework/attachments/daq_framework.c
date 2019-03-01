@@ -30,7 +30,7 @@ void controlLoop(void)
 {
   while (FALSE /* TODO: check if DAQ available and running */) {
 
-    /* will do something interesting here */
+    /* will do something interesting here later in the course */
     printf("The DAQ is running\n");
 
   }

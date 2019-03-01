@@ -1,9 +1,4 @@
-# Introduction to the Data Acquision (DAQ) device
-
-**Difficulty:** Easy
-<br/><br/>
-
-This is an introduction to the Data Acquisition (DAQ) Device.  In this challenge, we will recreate the DAQ general framework, which will form the basis for most DAQ-related programs in this course.
+In this challenge, we will recreate the DAQ general framework, which will form the basis for most DAQ-related programs in this course.
 
 The DAQ is a hardware module that reads signals from a set of physical sensors, processes data, and writes to output pins and digital displays.
 
@@ -11,14 +6,14 @@ The DAQ is a hardware module that reads signals from a set of physical sensors, 
 
 It is your job to write the main program that handles device setup, I/O, and processing.  
 
-Your program first needs to initialize the device with a "setup" number.  The DAQ has a set of pre-configured device layouts consisting of sensors and display components. The setup number informs the system which of these layouts to use for the current program.  Your program should then check whether the device is ready to process inputs/ouputs, and continue to loop and process data until the device has been shut-down.
+Your program first needs to initialize the device with a "setup" number.  The DAQ has a set of pre-configured device layouts consisting of sensors and display components. The setup number informs the system which of these layouts to use for the current program.  Your program should then check whether the device is ready to process inputs/outputs, and continue to loop and process data until the device has been shut-down.
 
 Complete the program details, marked `TODO` in the template below:
 - prompt the user to enter a setup number with the expression `"Enter the DAQ setup number: "`
 - initialize the device using the supplied setup number, and check if it was successful
   - if successful, call the control loop function
-  - otherwise, print the error message `"ERROR: cannot initialize the DAQ\n"`
-- in a loop, continuously check whether the device is ready to process inputs/ouputs until the device has been shut-down
+  - otherwise, print the error message `"\nERROR: cannot initialize the DAQ\n"`
+- in a loop, continuously check whether the device is ready to process inputs/outputs until the device has been shut-down
 
 ```c
 /* headers */
@@ -53,7 +48,7 @@ void controlLoop(void)
 {
   while (FALSE /* TODO: check if DAQ available and running */) {
 
-    /* will do something interesting here */
+    /* will do something interesting here later in the course */
     printf("The DAQ is running\n");
 
   }
@@ -70,28 +65,56 @@ Both return either `TRUE` (1) for success, or `FALSE` (0) for failure.
 ---
 ## Evaluation
 
-The text-based simulator differs from the graphical simulator/hardware in that it prints/reads values to/from the command-line with each call to `continueSuperLoop()`.  For this reason, it is important that `continueSuperLoop()` and any other print/scan statements are executed in a precise order.
+This online task uses a modified text-only simulator.  The text-only simulator differs from the graphical simulator and hardware in that it prints/reads values to/from the command-line with each call to `continueSuperLoop()`.  For this reason, it is important that `continueSuperLoop()` and any other print or scan statements are executed in a precise order.
 
 Each time `continueSuperLoop()` is called, 
 
 - the current device outputs are printed to standard output (`stdout`)
-- the sensor values are read in from standard input (`stdin`)
+- the sensor values are read from standard input (`stdin`)
 
-If there are no more lines of input, or if the next input line contains an invalid character, then `continueSuperLoop()` will return `FALSE` (0), signalling that your control loop should exit. 
+If there are no more lines of input, or if the next input line contains an invalid character, then `continueSuperLoop()` will return `FALSE` (0), signalling that your control loop should exit.
+
+You should be able to run and test your program at home or in the lab with the regular simulator.
 
 ## Input Format
 
 **NOTE:** most reading from the standard input is handled for you by the provided `DAQlib` library.
 
-The first line of input consists of the setup number that was prompted.
+The first line of input consists of the setup number.
 
-Each following line in corresponds to the values of the input sensors at the beginning of each iteration of the "super" loop.
+Each following line in corresponds to the values of the input sensors at the next `continueSuperLoop()` call.
 
-## Ouput Format
+## Output Format
 
 **NOTE:** most of the output is handled for you by the provided `DAQlib` library.
 
 Whenever `continueSuperLoop()` is called, a collection of 1 to 5 lines will be printed, depending on the output devices attached to the DAQ.  Digital/analog outputs will be printed first on a single line (if available).  If the device contains a seven-segment display, then an additional four lines are printed to show the values of the displays.
+
+---
+
+## Sample 1
+
+### Input
+```default
+2
+0 0
+```
+
+### Output
+
+```default
+Enter the DAQ setup number: 
+ 0 0 0
+The DAQ is running
+ 0 0 0
+The DAQ is closing
+```
+
+### Explanation
+
+The DAQ with configuration 2 contains two digital input switches and three digital output LEDs.  
+
+At the beginning of the first super-loop, when `continueSuperLoop()` is called for the first time, all LEDs are initially off (`0`).  Since there is one line of valid inputs, `continueSuperLoop()` will read in the values of the switches and return `TRUE`, causing the super-loop to execute and print the line `"The DAQ is running`.  The second time `continueSuperLoop()` is called, it prints the current values for the output LEDs.  Since there are no more valid lines of input, `continueSuperLoop()` returns `FALSE`, and the loop exists, printing `"The DAQ is closing"`.
 
 ---
 
@@ -129,34 +152,7 @@ The expected output first displays the prompt for a setup number.  The hardware 
 The first set of four lines indicate that the displays are all off when the program starts and `continueSuperLoop()` is called for the first time.  Since there is one line of valid inputs, the control loop should execute once successfully, printing `"The DAQ is running"`.  The second set of four lines corresponds to display values after that first iteration, when `continueSuperLoop()` is called for a second time.  Since there are no more valid lines of input, this function will return `FALSE` and the loop should exit, printing `"The DAQ is closing"`.
 
 ---
-
-## Sample 1
-
-### Input
-```default
-2
-0 0
-```
-
-### Output
-
-```default
-Enter the DAQ setup number: 
- 0 0 0
-The DAQ is running
- 0 0 0
-The DAQ is closing
-```
-
-### Explanation
-
-The DAQ with configuration 2 contains two digital input switches and three digital output LEDs.  
-
-At the beginning of the first super-loop, when `continueSuperLoop()` is called for the first time, all LEDs are initially off (`0`).  Since there is one line of valid inputs, `continueSuperLoop()` will read in the values of the switches and return `TRUE`, causing the super-loop to execute and print the line `"The DAQ is running`.  The second time `continueSuperLoop()` is called, it prints the current values for the output LEDs.  Since there are no more valid lines of input, `continueSuperLoop()` returns `FALSE`, and the loop exists, printing `"The DAQ is closing"`.
-
----
-
-## Sample 2
+## Sample 3
 
 ### Input
 ```default
