@@ -21,7 +21,7 @@ You should define the following symbolic constants before your function:
 ```c
 #define TRUE  1
 #define FALSE 0
-#define MAX_N 1000
+#define MAX_N 100
 ```
 
 Note that the maximum value for $n$ is quite large.  To receive full marks, your program must return a correct result within 5 seconds.
@@ -58,15 +58,15 @@ int check3 = isMagicSquare(square3, 5);  /* returns FALSE */
 ```
 The first square, `square1`, is a magic square, as previously described.
 
-The second, `square2`, does satisfy that all rows, columns, and diagonals have the same sum (50).  However, the square does not contain all numbers in the range $1, \ldots, 16$.
+The second, `square2`, satisfies that all rows, columns, and diagonals have the same sum (50).  However, the square does not contain all numbers in the range $1, \ldots, 16$.
 
-The third, `square3`, does contain all numbers in the range $1,\ldots,25$, and every row and column have the same sum, however the two diagonals do not.
+The third, `square3`, contains all numbers in the range $1,\ldots,25$, and every row and column have the same sum, however the two diagonals do not.
 
 ---
 ### Testing
 
 To test your function at home, see the sample `magic_main.c` file in the attachments sections.  You can include this file alongside `magic.c` in your project in Visual Studio or Xcode.  Both files must belong to the project in order to be compiled together.  When multiple files are added to a project, they are compiled and linked into a single program.  
 
-When submitting, only submit the `magic.c` file.  If you receive a compile error related to multiple definitions, it is because you included a `main(..)` when you were asked not to.
+When submitting, only upload the `magic.c` file.  If you receive a compile error related to multiple definitions, it is because you included a `main(..)` when you were asked not to.
 
 

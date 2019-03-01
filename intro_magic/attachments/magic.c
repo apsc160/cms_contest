@@ -1,5 +1,5 @@
 /* symbolic constants */
-#define MAX_N 1000
+#define MAX_N 100
 #define TRUE  1
 #define FALSE 0
 

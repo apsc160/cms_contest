@@ -38,4 +38,4 @@ The value `3` is not found in `vals`, so `-1` is returned.
 
 To test your function at home, see the sample `search_main.c` file in the attachments sections.  You can include this file alongside `search.c` in your project in Visual Studio or Xcode.  Both files must belong to the project in order to be compiled together.  When multiple files are added to a project, they are compiled and linked into a single program.  
 
-When submitting, only submit the `search.c` file.  If you receive a compile error related to multiple definitions, it is because you included a `main(..)` when you were asked not to.
+When submitting, only submit the `search.c` file.  If you receive a compile error related to multiple definitions, it is because you included a `main(..)` function when you were asked not to.
