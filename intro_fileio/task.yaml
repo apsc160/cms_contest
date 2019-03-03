@@ -2,7 +2,6 @@
 name: "fileio"
 category: "intro"
 title: "Basic File I/O"
-num: 1
 submission_format: 
         - "fileio.%l"
 
@@ -16,6 +15,7 @@ input_file: "numbers.txt"
 output_file: "sum.txt"
 score_type: "Sum"
 score_type_parameters: 5
+score_mode: "max_subtask"
 
 testcases:
   - {codename: "00", input: "input/input00.txt", output: "output/output00.txt", public: true}
