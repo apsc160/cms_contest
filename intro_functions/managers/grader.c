@@ -25,3 +25,17 @@ int main(void)
 
 	return 0;
 }
+
+/* 
+ * Prints the given character the given number of times on the screen.
+ * Parameter: size - the number of characters to print 
+ * Parameter: c - the character to print 
+ */
+void printChars(int size, char c ) 
+{    
+    int i; 
+    /* print character size times */
+    for (i=0; i<size; i++) {
+        printf( "%c", c );        
+    }
+}
