@@ -12,7 +12,7 @@ time_limit: 5
 memory_limit: 256
 
 # Test cases use standard input/output
-input_file: ""
+input_file: "data.txt"
 output_file: ""
 score_type: "Sum"
 score_type_parameters: 10
