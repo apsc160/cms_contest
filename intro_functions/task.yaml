@@ -2,7 +2,6 @@
 name: "functions"
 category: "intro"
 title: "Printing a Checkerboard Pattern"
-num: 7
 submission_format: 
         - "checkerboard.%l"
 
@@ -16,6 +15,7 @@ input_file: ""
 output_file: ""
 score_type: "Sum"
 score_type_parameters: 10
+score_mode: "max_subtask"
 
 testcases:
   - {codename: "00", input: "input/input00.txt", output: "output/output00.txt", public: true}
