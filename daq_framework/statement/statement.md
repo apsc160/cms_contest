@@ -132,12 +132,12 @@ Enter the setup number: 0
                                  
                                  
  ___ ___ ___ ___ ___ ___ ___ ___ 
- The DAQ is running
+The DAQ is running
                                  
                                  
                                  
  ___ ___ ___ ___ ___ ___ ___ ___ 
- The DAQ is closing
+The DAQ is closing
 
 ```
 
