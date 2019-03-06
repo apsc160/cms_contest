@@ -2,6 +2,7 @@
 name: "daq_framework"
 title: "The DAQ General Framework"
 category: "DAQ"
+release_time: "2019-03-05 08:00:00"
 submission_format: 
         - "daq_framework.%l"
 

@@ -1,1 +1,2 @@
-Enter the DAQ setup number: ERROR: cannot initialize the DAQ
+Enter the DAQ setup number: 99
+ERROR: cannot initialize the DAQ

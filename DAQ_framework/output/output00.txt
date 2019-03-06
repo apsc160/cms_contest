@@ -1,4 +1,5 @@
-Enter the DAQ setup number:                                  
+Enter the DAQ setup number: 0
+                                 
                                  
                                  
  ___ ___ ___ ___ ___ ___ ___ ___ 
