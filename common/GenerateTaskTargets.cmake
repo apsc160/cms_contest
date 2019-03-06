@@ -1,10 +1,21 @@
 function (GenerateTaskTargets EXERCISE)
+
+	# include all files in solution dir
 	file(GLOB solution_files "${CMAKE_CURRENT_SOURCE_DIR}/solution/*.c")
+
+	# append explicit source files
+	list(APPEND solution_files ${SOURCES})
+
+	# search solution dir for headers
+	include_directories("${CMAKE_CURRENT_SOURCE_DIR}/solution/")
+
 	add_executable(${EXERCISE} ${solution_files})
 
+	# collect all inputs
 	file(GLOB input_files "${CMAKE_CURRENT_SOURCE_DIR}/input/*.txt")
 	set(${EXERCISE}_OUTPUTS "")
 	
+	# generate output targets
 	foreach(input ${input_files})
 		# get test index
 		string(REGEX REPLACE ".*/input/input([0-9]+).txt" "\\1" IDX "${input}")
@@ -29,12 +40,14 @@ function (GenerateTaskTargets EXERCISE)
 		set_tests_properties(${EXERCISE}_TEST_${IDX} PROPERTIES TIMEOUT 10) 
 	endforeach()
 
+	# build statement pdf
 	add_custom_target( 
 		${EXERCISE}_STATEMENT 
 		COMMAND pandoc statement.md -V geometry:margin=1in --highlight-style ../../common/prism.theme -o statement.pdf
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/statement
 	)
 
+	# add output file targets
 	set(OUTPUT_FILES ${OUTPUT_FILES} ${${EXERCISE}_OUTPUTS} PARENT_SCOPE)
 	set(STATEMENT_PDFS ${STATEMENT_PDFS} ${EXERCISE}_STATEMENT PARENT_SCOPE)
 

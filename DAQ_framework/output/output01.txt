@@ -1,4 +1,5 @@
-Enter the DAQ setup number:  0 0 0
+Enter the DAQ setup number: 1
+ 0 0 0
 The DAQ is running
  0 0 0
 The DAQ is closing
