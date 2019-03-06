@@ -174,4 +174,10 @@ There is no valid configuration for setup number 99, so initialization fails and
 
 You should be able to run and test your program at home or in the lab with the regular simulator.
 
-To try with the text-based simulator,
+To try with the text-based simulator, download the file `DAQlibTerminal.c` from the attachments section and add it to your project.  Note that you will still need to create a project of type `APSC160 - DAQ` so that your program can find the appropriate `<DAQlib.h>` header.  Otherwise, also download `DAQlib.h` from the attachments, add it to your project, and include the header using single quotes rather than `<>`:
+
+```c
+#include "DAQlib.h"
+```
+
+The single-quotes informs the compiler to search for the header in the current directory, whereas the angle-brackets tell the compiler to search for the header in a set of system-dependent paths.
