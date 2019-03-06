@@ -4,7 +4,7 @@
  * This implementation reads and writes from/to the standard I/O streams 
  * (stdin, stdout)
  * 
- * In setupDAQ(...), the setup number is echoed to standard output, regardless 
+ * In setupDAQ(...), the setup number is printed to standard output, regardless 
  * of success or failure
  * 
  * With each call to continueSuperLoop(), current outputs are written to 
@@ -88,8 +88,8 @@ int setupDAQ(int setupNum) {
   printf("%d\n", setupNum);
 
   __daq.setup_number = setupNum;
-  if ((setupNum < DAQ_SETUP_MIN || setupNum > DAQ_SETUP_MAX) 
-      && (setupNum != DAQ_SETUP_CUSTOM)) {
+  if ( ( (setupNum < DAQ_SETUP_MIN) || (setupNum > DAQ_SETUP_MAX) )
+  		&& (setupNum != DAQ_SETUP_CUSTOM) ) {
     return FALSE;
   }
 
@@ -204,9 +204,6 @@ static int __daq_read_inputs(void) {
 /*  print DAQ outputs to stdout */
 static void __daq_print_outputs(void) {
 
-  /* setup number */
-  /* printf("%d", __daq.setup_number); */
-  
   /*  digital output */
   if (__daq.digital_outputs_size > 0) {
     int i;
@@ -383,7 +380,6 @@ void displayWrite(int data, int position) {
 /***********************************************
  * TIMING
  ***********************************************/
-
 
 #if defined(_WIN32) || defined(_WIN64)
 /* Windows implementation */
