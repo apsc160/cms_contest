@@ -25,8 +25,10 @@
 unsigned long micros(void);  /* microseconds that have passed */
 
 #define DAQ_SETUP_INVALID   (-9999)
-#define DAQ_SETUP_CUSTOM    (-1)
+#define DAQ_SETUP_CUSTOM    (-2)
 #define DAQ_SETUP_HARDWARE  0
+#define DAQ_SETUP_MIN       0
+#define DAQ_SETUP_MAX       7
 
 /*  global variables for storing I/O data */
 static struct {
@@ -48,8 +50,12 @@ static struct {
 int setupDAQ(int setupNum) {
   int i;
 
+  /* print configuration number */
+  printf("%d\n", setupNum);
+
   __daq.setup_number = setupNum;
-  if (setupNum < -1 || setupNum > 8) {
+  if ((setupNum < DAQ_SETUP_MIN || setupNum > DAQ_SETUP_MAX) 
+      && (setupNum != DAQ_SETUP_CUSTOM)) {
     return FALSE;
   }
 

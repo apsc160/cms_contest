@@ -11,8 +11,8 @@ time_limit: 5
 memory_limit: 256
 
 # Test cases use standard input/output
-infile: ""
-outfile: ""
+input_file: ""
+output_file: ""
 score_type: "Sum"
 score_type_parameters: 10
 score_mode: "max_subtask"
