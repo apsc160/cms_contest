@@ -4,7 +4,7 @@ However, sometimes we are interested in a *change* in state. We may only want to
 
 In this challenge, you are going to implement a *toggle* behaviour for the button: when the button is initially pressed (i.e.~changes from `OFF` to `ON`), it will change the state of the corresponding LED.  Otherwise, the LED will remain in its current state.
 
-![simulator](./assets/toggle.png)
+![simulator](./assets/toggle.gif)
 
 The DAQ module with configuration `6` has four digital inputs (push-buttons) and four digital outputs (LEDs):
 
