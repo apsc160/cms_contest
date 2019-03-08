@@ -30,3 +30,4 @@ tasks:
   - intro_magic
   - intro_regression
   - daq_framework
+  - daq_indicator

@@ -65,7 +65,7 @@ Both return either `TRUE` (1) for success, or `FALSE` (0) for failure.
 ---
 ## Evaluation
 
-This online task uses a modified text-only simulator.  The text-only simulator differs from the graphical simulator and hardware in that it prints and reads values to and from the command-line.  Specifically:
+This online task uses a modified command-line simulator.  The command-line simulator differs from the graphical simulator and hardware in that it prints and reads values to and from the command-line.  Specifically:
 
 - When `setupDAQ(...)` is called, the setup number is printed to standard output (`stdout`)
 - Each time `continueSuperLoop()` is called, 
@@ -176,7 +176,7 @@ There is no valid configuration for setup number 99, so initialization fails and
 
 You should be able to run and test your program at home or in the lab with the regular simulator.
 
-To try with the text-based simulator, download the file `DAQlibTerminal.c` from the attachments section and add it to your project.  Note that you will still need to create a project of type `APSC160 - DAQ` so that your program can find the appropriate `<DAQlib.h>` header.  
+To try with the command-line simulator, download the file `DAQlibTerminal.c` from the attachments section and add it to your project.  Note that you will still need to create a project of type `APSC160 - DAQ` so that your program can find the appropriate `<DAQlib.h>` header.  
 
 If you do not have the library and simulator installed, you can manually add the `DAQlib.h` header.  Download `DAQlib.h` from the attachments, add it to your project, and include it using double-quotes rather than `<>`:
 
