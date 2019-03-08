@@ -22,6 +22,7 @@ add_subdirectory(intro_functions)
 add_subdirectory(intro_magic)
 add_subdirectory(intro_regression)
 add_subdirectory(daq_framework)
+add_subdirectory(daq_indicator)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
 add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
