@@ -17,7 +17,6 @@ void indicatorLoop(void);
 /* main function */
 int main(void) 
 {
-
   if ( FALSE /* TODO: setup DAQ configuration 6 and check if successful */ ) {
     /* TODO: call the control loop function */
   } else {
@@ -35,5 +34,4 @@ void indicatorLoop(void)
     /* TODO: read all four push-buttons and turn on/off corresponding LEDs */
 
   }
-
 }
