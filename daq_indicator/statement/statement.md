@@ -30,7 +30,7 @@ You are provided with the following functions:
 
 For the command-line simulator, each line in the input corresponds to the values of the input sensors at the beginning of each iteration of the "super" loop.  In this case, the values correspond to the states of the four digital push-buttons.
 
-## Ouput Format
+## Output Format
 
 **NOTE:** the output is handled for you by the provided `DAQlib` library.
 
