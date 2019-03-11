@@ -26,6 +26,8 @@ add_subdirectory(daq_framework)
 add_subdirectory(daq_indicator)
 add_subdirectory(daq_toggle)
 add_subdirectory(daq_binary_leds)
+add_subdirectory(daq_writenumber)
+add_subdirectory(daq_writenegative)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
 add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
