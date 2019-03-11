@@ -40,14 +40,8 @@ For use with the command-line version of the simulator, the input will also cont
 
 If using the command-line simulator,
 
-<ul>
-	<li>The first line prints the setup number used to initialize the device</li>
-	<li>The following lines should show the prompt
-		<ul>
-			<li>`"Enter an integer in the range [0 - 63]: "`</li>
-		</ul>
-		as well as the digital output values of the 6 LEDs for every iteration of your super-loop.</li>
-</ul>
+- The first line prints the setup number used to initialize the device
+- The following lines should show the prompt `"Enter an integer in the range [0 - 63]: ", as well as the digital output values of the 6 LEDs for every iteration of your super-loop.
 
 ---
 
