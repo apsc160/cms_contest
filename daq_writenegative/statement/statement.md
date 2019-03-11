@@ -57,26 +57,21 @@ at the end of the corresponding super loop iteration
 
 ```
 4
-                                
                                  
                                  
+                                 
  ___ ___ ___ ___ ___ ___ ___ ___ 
-
+              _   _       _   _  
+          _   _|  _|   |   | |_  
+              _| |_    |   | |_| 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
                               _  
-                             | | 
-                             |_| 
+                         |_|  _| 
+                           | |_  
  ___ ___ ___ ___ ___ ___ ___ ___ 
-                              _  
-                           |  _| 
-                           |  _| 
- ___ ___ ___ ___ ___ ___ ___ ___ 
-                  _   _       _  
-               |  _|  _| |_| |_  
-               | |_   _|   |  _| 
- ___ ___ ___ ___ ___ ___ ___ ___ 
-  _   _   _   _   _   _   _   _  
- |_| |_| |_| |_| |_| |_| |_| |_| 
- |_| |_| |_| |_| |_| |_| |_| |_| 
+                          _   _  
+                  _    | | | | | 
+                       | |_| |_| 
  ___ ___ ___ ___ ___ ___ ___ ___ 
 ```
 
@@ -84,6 +79,6 @@ at the end of the corresponding super loop iteration
 
 - The DAQ is initialized with setup number 4, and the displays are all initially blank `___` on the first call to `continueSuperLoop()`
 - The first line of input (and every second line thereafter) corresponds to the values of the input switches, which are ignored
-- The second input line `0` tells us to display the digit 0
-- The fourth input line `13` tells us to display the number 13
+- The second input line `-32176` tells us to display that negative number on the set of 7-segment displays
+- The fourth input line `42` tells us to display the number 42
 - etc...
