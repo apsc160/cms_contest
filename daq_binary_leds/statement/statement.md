@@ -1,4 +1,4 @@
-The DAQ module with configuration `2` has two digital inputs (push-buttons) and six digital outputs (LEDs).  We will ignore the two push-buttons, and instead read data from standard input (`stdin`) using `scanf(...)`.  The LEDs are on consecutive **digital output channels** $0 -- 5$.
+The DAQ module with configuration `2` has two digital inputs (push-buttons) and six digital outputs (LEDs).  We will ignore the two push-buttons, and instead read data from standard input (`stdin`) using `scanf(...)`.  The LEDs are on consecutive digital output channels 0 - 5.
 
 We are going to write a program that will display the binary representation of integers using the LEDs.  Your program should continuously do the following:
 - prompt the user to `"Enter an integer in the range [0 - 63]: "`
@@ -11,7 +11,7 @@ For example, if the number 43 is entered by the user, it is written as `101011` 
 
 <table>
 	<tr>
-		<td>
+		<td style="white-space: nowrap; padding-right:2em;">
 			<ul>
 				<li><code>LED0</code>: <code>ON</code></li>
 				<li><code>LED1</code>: <code>OFF</code></li>
@@ -39,18 +39,22 @@ For use with the command-line version of the simulator, the input will also cont
 ## Output Format
 
 If using the command-line simulator,
-- The first line prints the setup number used to initialize the device
-- The following lines should show the prompt
-	- `"Enter an integer in the range [0 - 63]: "`
-  
-  as well as the digital output values of the 6 LEDs for every iteration of your super-loop.
+
+<ul>
+	<li>The first line prints the setup number used to initialize the device</li>
+	<li>The following lines should show the prompt
+		<ul>
+			<li>`"Enter an integer in the range [0 - 63]: "`</li>
+		</ul>
+		as well as the digital output values of the 6 LEDs for every iteration of your super-loop.</li>
+</ul>
 
 ---
 
 ## Sample
 
 ### Input
-```
+```default
 0 0
 5
 0 0
@@ -61,7 +65,7 @@ If using the command-line simulator,
 
 ### Output
 
-```
+```default
 2
  0 0 0 0 0 0
 Enter an integer in the range [0 - 63]:  0 0 0 1 0 1
@@ -84,7 +88,7 @@ In the last iteration, both switches are `OFF`. The program prompts the user, re
 Since there is no more input, the super-loop then exits.
 
 **NOTE:** in the output above, the inputs and outputs are separated.  If you are interacting with the program and typing in the input integers, it may look more like
-```
+```default
 2
  0 0 0 0 0 0
 Enter an integer in the range [0 - 63]: 5
