@@ -1,13 +1,11 @@
 The DAQ module with configuration `6` has four digital inputs (push-buttons) and four digital outputs (LEDs):
 
-- `BUTTON0` - digital input channel 0
-- `BUTTON1` - digital input channel 1
-- `BUTTON2` - digital input channel 2
-- `BUTTON3` - digital input channel 3
-- `LED0` - digital output channel 0
-- `LED1` - digital output channel 1
-- `LED2` - digital output channel 2
-- `LED3` - digital output channel 3
+<table align="center">
+	<tr><td><code>BUTTON0</code> - digital input channel 0</td><td><code>LED0</code> - digital output channel 0</td></tr>
+	<tr><td><code>BUTTON1</code> - digital input channel 1</td><td><code>LED1</code> - digital output channel 1</td></tr>
+	<tr><td><code>BUTTON2</code> - digital input channel 2</td><td><code>LED2</code> - digital output channel 2</td></tr>
+	<tr><td><code>BUTTON3</code> - digital input channel 3</td><td><code>LED3</code> - digital output channel 3</td></tr>
+</table>
 
 Write a program that continuously reads the status of the push-buttons and turns on the corresponding LEDs if pressed.  If a button is not pressed, then its corresponding LED should remain off.
 
