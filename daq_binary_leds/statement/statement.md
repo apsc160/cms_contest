@@ -103,3 +103,12 @@ You should be able to run and test your program at home or in the lab with the r
 ```c
 #include "DAQlib.h"
 ```
+
+---
+
+### Hints
+
+- The LEDs are on sequential digital output channels, making them easy to loop through
+- Since `LED0` is on the left, the $i$th LED from the right is `LED0 + 5 - i` (verify this)
+- Think about how you might convert numbers between decimal and binary by hand
+- You may also find [bitwise operators](https://en.wikipedia.org/wiki/Bitwise_operations_in_C) useful ( `&`, `|`, `<<`, `>>`), though they are not necessary.
