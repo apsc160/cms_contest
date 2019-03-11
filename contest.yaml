@@ -29,6 +29,7 @@ tasks:
   - intro_functions
   - intro_magic
   - intro_regression
+  - intro_base7
   - daq_framework
   - daq_indicator
   - daq_toggle

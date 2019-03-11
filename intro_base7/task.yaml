@@ -1,0 +1,25 @@
+# Task basics
+name: "base7"
+category: "intro"
+title: "Base-7 Representations"
+release_time: "2019-03-12 08:00:00"
+submission_format: 
+        - "base7.%l"
+
+# Restrictions
+token_mode: "disabled"
+time_limit: 5
+memory_limit: 256
+
+# Test cases use standard input/output
+input_file: ""
+output_file: ""
+score_type: "Sum"
+score_type_parameters: 10
+score_mode: "max_subtask"
+
+testcases:
+  - {codename: "00", input: "input/input00.txt", output: "output/output00.txt", public: true}
+  - {codename: "01", input: "input/input01.txt", output: "output/output01.txt", public: true}
+  - {codename: "02", input: "input/input02.txt", output: "output/output02.txt", public: true}
+
