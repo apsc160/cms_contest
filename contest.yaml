@@ -34,3 +34,5 @@ tasks:
   - daq_indicator
   - daq_toggle
   - daq_binary_leds
+  - daq_writenumber
+  - daq_writenegative
