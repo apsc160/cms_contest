@@ -41,7 +41,7 @@ Outputs in the command-line simulator are as follows:
 ## Sample
 
 ### Input
-```
+```default
 1 0 0 0
 0 1 1 0
 0 0 0 1
@@ -50,7 +50,7 @@ Outputs in the command-line simulator are as follows:
 
 ### Output
 
-```
+```default
 6
  0 0 0 0
  1 0 0 0
