@@ -6,7 +6,7 @@ $$ \begin{aligned} 15424_7 & = 1\times(7^4) + 5\times(7^3) + 4\times(7^2) + 2\ti
 
 To convert from decimal to base-7, we need to perform the reverse process: given the number 4330 in decimal, we want to determine the digits in base 7.  We can do this by noting that the least-significant digit, 4, is the remainder of 4330 when dividing by 7:
 
-$$ \begin{aligned} 4330 \% 7 & = 1\times(7^4) \% 7 + 5\times(7^3) \% 7 + 4\times(7^2) \% 7 + 2\times(7^1) \% 7 + 4\times(7^0) \% 7\\\\ & = 1\times 0 + 5 \times 0 + 4 \times 0 + 2 \times 0 + 4 \times 1\\\\ & = 4. \end{aligned} $$
+$$ \begin{aligned} 4330 \\% 7 & = 1\times(7^4) \\% 7 + 5\times(7^3) \\% 7 + 4\times(7^2) \\% 7 + 2\times(7^1) \\% 7 + 4\times(7^0) \\% 7\\\\ & = 1\times 0 + 5 \times 0 + 4 \times 0 + 2 \times 0 + 4 \times 1\\\\ & = 4. \end{aligned} $$
 
 To get the next digit, note that if we divide 4330 by 7 using integer division, we get
 $$ \begin{aligned} 4330 / 7 & = 1\times(7^4) / 7 + 5\times(7^3) / 7 + 4\times(7^2) / 7 + 2\times(7^1) / 7 + 4\times(7^0) / 7\\\\ & = 1\times(7^3) + 5\times(7^2) + 4\times(7^1) + 2\times(7^0)\\\\ & = 1542_7, \end{aligned} $$
