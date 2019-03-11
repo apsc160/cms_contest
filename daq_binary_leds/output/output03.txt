@@ -1,15 +1,70 @@
-6
- 0 0 0 0
- 1 1 1 1
- 1 1 1 1
- 0 0 0 0
- 0 0 0 0
- 0 0 0 0
- 0 1 0 1
- 1 1 0 1
- 1 1 0 1
- 1 0 1 1
- 1 0 1 1
- 1 0 1 1
- 0 0 1 1
- 0 0 1 0
+2
+ 0 0 0 0 0 0
+Enter an integer in the range [0 - 63]: Invalid integer
+ 0 0 0 0 0 0
+Enter an integer in the range [0 - 63]:  0 0 0 0 0 0
+Enter an integer in the range [0 - 63]:  0 0 0 0 0 1
+Enter an integer in the range [0 - 63]:  0 0 0 0 1 0
+Enter an integer in the range [0 - 63]:  0 0 0 0 1 1
+Enter an integer in the range [0 - 63]:  0 0 0 1 0 0
+Enter an integer in the range [0 - 63]:  0 0 0 1 0 1
+Enter an integer in the range [0 - 63]:  0 0 0 1 1 0
+Enter an integer in the range [0 - 63]:  0 0 0 1 1 1
+Enter an integer in the range [0 - 63]:  0 0 1 0 0 0
+Enter an integer in the range [0 - 63]:  0 0 1 0 0 1
+Enter an integer in the range [0 - 63]:  0 0 1 0 1 0
+Enter an integer in the range [0 - 63]:  0 0 1 0 1 1
+Enter an integer in the range [0 - 63]:  0 0 1 1 0 0
+Enter an integer in the range [0 - 63]:  0 0 1 1 0 1
+Enter an integer in the range [0 - 63]:  0 0 1 1 1 0
+Enter an integer in the range [0 - 63]:  0 0 1 1 1 1
+Enter an integer in the range [0 - 63]:  0 1 0 0 0 0
+Enter an integer in the range [0 - 63]:  0 1 0 0 0 1
+Enter an integer in the range [0 - 63]:  0 1 0 0 1 0
+Enter an integer in the range [0 - 63]:  0 1 0 0 1 1
+Enter an integer in the range [0 - 63]:  0 1 0 1 0 0
+Enter an integer in the range [0 - 63]:  0 1 0 1 0 1
+Enter an integer in the range [0 - 63]:  0 1 0 1 1 0
+Enter an integer in the range [0 - 63]:  0 1 0 1 1 1
+Enter an integer in the range [0 - 63]:  0 1 1 0 0 0
+Enter an integer in the range [0 - 63]:  0 1 1 0 0 1
+Enter an integer in the range [0 - 63]:  0 1 1 0 1 0
+Enter an integer in the range [0 - 63]:  0 1 1 0 1 1
+Enter an integer in the range [0 - 63]:  0 1 1 1 0 0
+Enter an integer in the range [0 - 63]:  0 1 1 1 0 1
+Enter an integer in the range [0 - 63]:  0 1 1 1 1 0
+Enter an integer in the range [0 - 63]:  0 1 1 1 1 1
+Enter an integer in the range [0 - 63]:  1 0 0 0 0 0
+Enter an integer in the range [0 - 63]:  1 0 0 0 0 1
+Enter an integer in the range [0 - 63]:  1 0 0 0 1 0
+Enter an integer in the range [0 - 63]:  1 0 0 0 1 1
+Enter an integer in the range [0 - 63]:  1 0 0 1 0 0
+Enter an integer in the range [0 - 63]:  1 0 0 1 0 1
+Enter an integer in the range [0 - 63]:  1 0 0 1 1 0
+Enter an integer in the range [0 - 63]:  1 0 0 1 1 1
+Enter an integer in the range [0 - 63]:  1 0 1 0 0 0
+Enter an integer in the range [0 - 63]:  1 0 1 0 0 1
+Enter an integer in the range [0 - 63]:  1 0 1 0 1 0
+Enter an integer in the range [0 - 63]:  1 0 1 0 1 1
+Enter an integer in the range [0 - 63]:  1 0 1 1 0 0
+Enter an integer in the range [0 - 63]:  1 0 1 1 0 1
+Enter an integer in the range [0 - 63]:  1 0 1 1 1 0
+Enter an integer in the range [0 - 63]:  1 0 1 1 1 1
+Enter an integer in the range [0 - 63]:  1 1 0 0 0 0
+Enter an integer in the range [0 - 63]:  1 1 0 0 0 1
+Enter an integer in the range [0 - 63]:  1 1 0 0 1 0
+Enter an integer in the range [0 - 63]:  1 1 0 0 1 1
+Enter an integer in the range [0 - 63]:  1 1 0 1 0 0
+Enter an integer in the range [0 - 63]:  1 1 0 1 0 1
+Enter an integer in the range [0 - 63]:  1 1 0 1 1 0
+Enter an integer in the range [0 - 63]:  1 1 0 1 1 1
+Enter an integer in the range [0 - 63]:  1 1 1 0 0 0
+Enter an integer in the range [0 - 63]:  1 1 1 0 0 1
+Enter an integer in the range [0 - 63]:  1 1 1 0 1 0
+Enter an integer in the range [0 - 63]:  1 1 1 0 1 1
+Enter an integer in the range [0 - 63]:  1 1 1 1 0 0
+Enter an integer in the range [0 - 63]:  1 1 1 1 0 1
+Enter an integer in the range [0 - 63]:  1 1 1 1 1 0
+Enter an integer in the range [0 - 63]:  1 1 1 1 1 1
+Enter an integer in the range [0 - 63]: Invalid integer
+ 0 0 0 0 0 0
