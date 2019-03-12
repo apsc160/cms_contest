@@ -26,7 +26,7 @@ It is your job to implement this new function.  You are provided with the follow
 
 **NOTE:** reading from standard input is handled for you by the `DAQlib` library and the code provided.
 
-If using the command-line simulator, each iteration of the super loop corresponds to two lines in the input.  The first line contains the values of the two digital input switches, which are to be ignored, and the second is the number to be written to the displays.
+If using the command-line simulator, each iteration of the super loop corresponds to two lines in the input.  The first line contains the values of the two digital input switches, which are to be ignored.  The second is the number to be written to the displays.
 
 ## Ouput Format
 
@@ -34,7 +34,7 @@ If using the command-line simulator, each iteration of the super loop correspond
 
 In the command-line simulator, 
 - the first line indicates the setup number used to initialize the DAQ
-- each subsequent group of 4 lines in the output depicts the values of the seven-segment displays
+- each subsequent group of 4 lines depicts the values of the seven-segment displays
 at the end of the corresponding super loop iteration
 
 ---
