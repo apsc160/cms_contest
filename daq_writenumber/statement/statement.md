@@ -42,7 +42,7 @@ at the end of the corresponding super loop iteration
 ## Sample
 
 ### Input
-```
+```default
 0 0
 0
 0 0
@@ -55,7 +55,7 @@ at the end of the corresponding super loop iteration
 
 ### Output
 
-```
+```default
 4
                                 
                                  
