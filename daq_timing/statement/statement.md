@@ -32,13 +32,13 @@ To implement the timing, you may also use any of the functions:
 
 **NOTE:** to receive full marks, you will need to ensure accuracy in the precise times the LEDs are switched on and off.
 
-### Evaluation
+## Evaluation
 
 You should be able to test your program using the usual DAQ simulator.  
 
 Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminalTiming.c` file).  The program is set to run for a specified amount of time, and print the DAQ outputs at a specified time interval.
 
-#### Input Format
+### Input Format
 
 The command-line simulator will read the following values from standard input when initialized:
 - the first time, in seconds, to print outputs
@@ -51,7 +51,7 @@ For example
 ```
 will cause the program to print results starting at 0.5 seconds, every 1.0 seconds, until 10.0 seconds have elaspsed (i.e. at 0.5 s, 1.5 s, 2.5 s, etc...).  After 10 seconds, `continueSuperLoop()` will return `FALSE` and the program should exit.
 
-#### Output Format
+### Output Format
 
 When the DAQ is first initialized, the command-line simulator will print the setup number used.
 
