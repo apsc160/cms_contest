@@ -21,15 +21,15 @@ typedef int __clockid_t;
 #endif
 
 /* POSIX timespec */
-struct __timespec {
+typedef struct {
 	long tv_sec;        /* seconds */
 	long tv_nsec;       /* nanoseconds */
-};
+} __timespec;
 
 int __time(int *seconds);
 
-int __nanosleep(const struct __timespec *req, struct __timespec *rem);
+int __nanosleep(const __timespec *req, __timespec *rem);
 
-int __clock_gettime(__clockid_t clk_id, struct __timespec *tp);
+int __clock_gettime(__clockid_t clk_id, __timespec *tp);
 
 #endif

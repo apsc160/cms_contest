@@ -476,7 +476,7 @@ unsigned int __sleep(unsigned int seconds)
 }
 
 /* replacement from time.h */
-int __nanosleep(const struct __timespec *req, struct __timespec *rem)
+int __nanosleep(const __timespec *req, __timespec *rem)
 {
 	unsigned long usec = req->tv_nsec/1000 + req->tv_sec * 1000000;
 	__delayMicroseconds(usec);
@@ -490,7 +490,7 @@ int __nanosleep(const struct __timespec *req, struct __timespec *rem)
 }
 
 /* replacement gettime */
-int __clock_gettime(__clockid_t clk_id, struct __timespec *tp)
+int __clock_gettime(__clockid_t clk_id, __timespec *tp)
 {
 	unsigned long usec = __micros();
 	unsigned long sec = usec / 1000000;
