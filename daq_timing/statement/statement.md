@@ -32,6 +32,8 @@ To implement the timing, you may also use any of the functions:
 
 **NOTE:** to receive full marks, you will need to ensure accuracy in the precise times the LEDs are switched on and off.
 
+---
+
 ## Evaluation
 
 You should be able to test your program using the usual DAQ simulator.  
@@ -59,12 +61,14 @@ At each designated "process" time, the simulator will print the current time to 
 
 ---
 
-### Sample Input
+## Sample
+
+### Input
 ```default
 0.5 1.0 10.0
 ```
 
-### Sample Output
+### Output
 ```default
 1
 0.50 0 0 0
