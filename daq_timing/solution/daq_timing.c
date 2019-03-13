@@ -1,5 +1,6 @@
 /* TODO: include headers */
 #include <DAQlib.h>
+#include <stdio.h>
 
 /* TODO: define symbolic constants */
 #define SIMULATOR 1
@@ -8,7 +9,6 @@
 #define ON   1
 #define OFF  0
 #define ONE_SECOND 1000
-
 
 /* control loop */
 void timingLoop(void);
@@ -34,9 +34,20 @@ void timingLoop(void)
 	int intervals[NUM_LEDS] = {1, 2, 3};
 	int i = 0;
 
+	int last_time = millis();
+
 	while (continueSuperLoop()) {
-		delay(ONE_SECOND);
+
+		/* delay one second */
+		int now = millis();
+		while (now - last_time <= ONE_SECOND) {
+			now = millis();
+		}
+		last_time += ONE_SECOND;
+		/* delay(ONE_SECOND); */ /* drifts */
+
 		++t;
+		
 
 		/* for every LED */
 		for (i=0; i<NUM_LEDS; ++i) {
@@ -47,5 +58,6 @@ void timingLoop(void)
 				digitalWrite(LED0 + i, leds[i]);
 			}
 		}
+		
 	}
 }
