@@ -4,7 +4,7 @@ category: "DAQ"
 title: "LED Timing"
 release_time: "2019-01-01 08:00:00"
 submission_format: 
-        - "notify.%l"
+        - "daq_timing.%l"
 
 # Restrictions
 token_mode: "disabled"
