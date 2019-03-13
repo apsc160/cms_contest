@@ -36,3 +36,5 @@ tasks:
   - daq_binary_leds
   - daq_writenumber
   - daq_writenegative
+  - daq_rotate_leds
+  - daq_timing
