@@ -46,5 +46,5 @@ Print the corresponding base-7 representations, each on a new line.  Do not prin
 
 ### Explanation
 
-$$ \begin{aligned} 4330_{10} & = 15474_{7}\\\\ 	7_{10} & = 10_{7}\\\\ 23_{10} & = 32_{7}\\\\ 1_{10} & = 1_{7}\\\\ 16086_{10} & = 66666_{7} \end{aligned} $$
+$$ \begin{aligned} 4330_{10} & = 15474_{7}\\\\ 	7_{10} & = 10_{7}\\\\ 23_{10} & = 32_{7}\\\\ 1_{10} & = 1_{7}\\\\ 16806_{10} & = 66666_{7} \end{aligned} $$
 
