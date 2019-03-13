@@ -11,6 +11,9 @@ function (GenerateTaskTargets EXERCISE)
 
 	add_executable(${EXERCISE} ${solution_files})
 
+	# link math library
+	target_link_libraries(${EXERCISE} m)
+
 	# collect all inputs
 	file(GLOB input_files "${CMAKE_CURRENT_SOURCE_DIR}/input/*.txt")
 	set(${EXERCISE}_OUTPUTS "")
