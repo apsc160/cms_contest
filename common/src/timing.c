@@ -1,8 +1,8 @@
 #include "timing.h"
 #include <stdint.h>
 
-/* advance by 10 ms every call to time function */
-#define AUTO_TIME_STEP 10000
+/* advance by 0.1 ms every call to time function */
+#define AUTO_TIME_STEP 100
 
 /* time storage */
 static struct {

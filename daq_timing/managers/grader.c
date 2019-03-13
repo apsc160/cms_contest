@@ -346,8 +346,7 @@ static int __daq_advance_process_control(void)
 
   /* process data */
   int success = TRUE;
-  while (success && usec >= __daq.process_time
-        && __daq.process_time <= __daq.stop_time) {
+  while (success && usec >= __daq.process_time) {
     double t = __daq.process_time/1000000.0;
     printf("%.2lf", t);
 
@@ -362,11 +361,6 @@ static int __daq_advance_process_control(void)
 
     /* advance process */
     __daq.process_time  += __daq.process_interval;
-  }
-
-  /* terminate if next process step is after stop time */
-  if (__daq.process_time > __daq.stop_time) {
-    success = FALSE;
   }
 
   return success;
@@ -389,6 +383,11 @@ int continueSuperLoop(void) {
   __daq_check_init();
 
   success = __daq_advance_process_control();
+
+    /* terminate if next process step is after stop time */
+  if (__daq.process_time > __daq.stop_time) {
+    success = FALSE;
+  }
 
   /* potentially terminate */
   if (!success) {
@@ -494,8 +493,8 @@ void delayMicroseconds(unsigned int us) {
 #include "timing.h"
 #include <stdint.h>
 
-/* advance by 10 ms every call to time function */
-#define AUTO_TIME_STEP 10000
+/* advance by 0.1 ms every call to time function */
+#define AUTO_TIME_STEP 100
 
 /* time storage */
 static struct {

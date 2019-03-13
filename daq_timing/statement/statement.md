@@ -30,6 +30,8 @@ To implement the timing, you may also use any of the functions:
 - `unsigned int sleep(unsigned int seconds)` - the POSIX sleep function, found in `<unistd.h>` on macOS/Linux.
 - `int usleep(unsigned long microseconds)` - the POSIX microsecond-sleep function, found in `<unistd.h>` on macOS/Linux.
 
+**NOTE:** to receive full marks, you will need to ensure accuracy in the precise times the LEDs are switched on and off.
+
 ### Evaluation
 
 You should be able to test your program using the usual DAQ simulator.  
@@ -51,9 +53,9 @@ will cause the program to print results starting at 0.5 seconds, every 1.0 secon
 
 #### Output Format
 
-When the DAQ is initialized, the command-line simulator will print the setup number used.
+When the DAQ is first initialized, the command-line simulator will print the setup number used.
 
-At each time, the simulator will print the current time (2 decimal places), followed by the digital outputs.
+At each designated "process" time, the simulator will print the current time to 2 decimal places, followed by the digital outputs.
 
 ---
 
