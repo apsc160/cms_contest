@@ -29,6 +29,7 @@ add_subdirectory(daq_toggle)
 add_subdirectory(daq_binary_leds)
 add_subdirectory(daq_writenumber)
 add_subdirectory(daq_writenegative)
+add_subdirectory(daq_rotate_leds)
 add_subdirectory(daq_timing)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
