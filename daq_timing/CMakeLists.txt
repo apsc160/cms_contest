@@ -6,7 +6,7 @@ set(SOURCES managers/grader.c)
 # include_directories(../common/src)
 # set(SOURCES attachments/DAQlibTerminalTiming.c ../common/src/timing.c)
 
-# attachment
+# attachment - real time
 # set(SOURCES attachments/DAQlibTerminalTiming.c)
 
 include(../common/GenerateTaskTargets.cmake)
