@@ -53,13 +53,13 @@ You are provided with the following functions:
 
 If running this program on the simulator, you may wish to insert a `Sleep(...)` command to slow down the rotations.  On Windows, you will need to include the header file `<Windows.h>`.  On macOS or Linux, you need to include `<unistd.h>`.  For example, the following code will cause the program to sleep for 500ms:
 
-**Windows:**
+#### Windows:
 ```c
 #include <Windows.h>
 Sleep(500);        /* input is time in milliseconds */
 ```
 
-**OSX/Linux:**
+#### OSX/Linux:
 ```c
 #include <unistd.h>
 usleep(500*1000);  /* input is time in microseconds */
