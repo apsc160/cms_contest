@@ -570,7 +570,7 @@ uint64_t __micros(void) {
 #endif /* WIN32 */
 
 unsigned long millis(void) {
-  return (unsigned long)(__micros()/1000);
+ return (unsigned long)(__micros()/1000);
 }
 
 unsigned long micros(void){

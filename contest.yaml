@@ -38,3 +38,5 @@ tasks:
   - daq_writenegative
   - daq_rotate_leds
   - daq_timing
+  - daq_clock
+  - daq_traffic

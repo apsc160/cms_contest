@@ -356,7 +356,7 @@ static int __daq_process_events(void)
   /* process data */
   int success = TRUE;
 
-/* process events until we've caught up to current time */
+  /* process events until we've caught up to current time */
   while (success && (int64_t)(usec - __daq.next_event) >= (int64_t)0) {
 
     /*  print current values */
@@ -468,111 +468,130 @@ void displayWrite(int data, int position) {
  * TIMING
  ***********************************************/
 
-#if defined(_WIN32) || defined(_WIN64)
-/* Windows implementation */
+/* replace DAQ timing */
 
-/* number of microseconds that have passed */
-uint64_t __micros(void) {
-  FILETIME ft;
-  uint64_t us;
-
-  /* no time has passed if daq not initialized */
-  if (__daq.setup_number == DAQ_SETUP_INVALID) {
-    return 0;
-  }
-
-  GetSystemTimeAsFileTime(&ft);
-  us = (((uint64_t)ft.dwHighDateTime) << 32) | (uint64_t)ft.dwLowDateTime;
-  us = us / 10;  /* 100ns to us */
-
-  return us - __daq.start_time;
-}
-
-void delay(unsigned long ms) {
-  Sleep(ms);
-}
-
-void delayMicroseconds(unsigned int us) {
-  unsigned long us1;
-  unsigned long diff;
-  unsigned int ms;
-
-  /* separate into ms*1000 + us */
-  ms = us/1000;
-  us = us%1000;
-
-  /* sleep ms first */
-  if (ms > 0) {
-    delay(ms);
-  }
-
-  /* delay remaining microseconds */
-  us1 = micros();
-  diff = micros()-us1;
-  while (diff < us) {
-    diff = micros()-us1;
-  }
-}
-
-#else
-
-/* POSIX implementation of time functions */
-
-void delay(unsigned long ms) {
-  /* separate seconds and remainder usec */
-  unsigned int sec = (int)(ms / 1000);
-  ms = ms % 1000;
-  unsigned long nano = ms*1000000;
-  struct timespec sleeptime;
-  sleeptime.tv_sec = sec;
-  sleeptime.tv_nsec = nano;
-  nanosleep(&sleeptime, NULL);
-}
-
-void delayMicroseconds(unsigned int us) {
-  /* separate seconds and remainder usec */
-  unsigned int sec = (int)(us / 1000000);
-  us = us % 1000000;
-  unsigned long nano = us*1000;
-  struct timespec sleeptime;
-  sleeptime.tv_sec = sec;
-  sleeptime.tv_nsec = nano;
-  nanosleep(&sleeptime, NULL);
-}
-
-uint64_t __micros(void) {
-  struct timespec tv;
-  uint64_t us = 0;
-
-  /* no time has passed if daq not initialized */
-  if (__daq.setup_number == DAQ_SETUP_INVALID) {
-    return 0;
-  }
-
-#ifdef __MACH__
-  clock_serv_t cclock;
-  mach_timespec_t mts;
-  host_name_port_t self = mach_host_self();
-  host_get_clock_service(self, SYSTEM_CLOCK, &cclock);
-  clock_get_time(cclock, &mts);
-  mach_port_deallocate(mach_task_self(), cclock);
-  mach_port_deallocate(mach_task_self(), self);
-  tv.tv_sec = mts.tv_sec;
-  tv.tv_nsec = mts.tv_nsec;
-#else
-  clock_gettime(CLOCK_REALTIME, &tv);
-#endif
-  us = ((uint64_t)(tv.tv_sec))*1000000UL;
-  us += tv.tv_nsec/1000UL;
-  return us - __daq.start_time;
-}
-
-#endif /* WIN32 */
+#include "timing.h"
 
 unsigned long millis(void) {
-  return (unsigned long)(__micros()/1000);
+  return __millis();
 }
 
-unsigned long micros(void){
+/* number of microseconds that have passed */
+unsigned long micros(void) {
   return (unsigned long)__micros();
+}
+
+void delay(unsigned long ms) {
+  __delay(ms);
+}
+
+void delayMicroseconds(unsigned int us) {
+  __delayMicroseconds(us);
+}
+
+/******************************************************************************
+ * TIMING.C
+ *****************************************************************************/
+
+#include "timing.h"
+
+/* advance by 0.1 ms every call to time function */
+#define AUTO_TIME_STEP 100
+
+/* time storage */
+static struct {
+	uint64_t usec;
+} __time_info = { 0 };
+
+/* replacement micros from Arduino/DAQlib */
+uint64_t __micros(void)
+{
+	/* auto-advance */
+	__time_info.usec += AUTO_TIME_STEP;
+	return __time_info.usec;
+}
+
+/* replacement millis from Arduino/DAQlib */
+unsigned long __millis(void)
+{
+	return (unsigned long)(__micros()/1000);
+}
+
+/* replacement delay from Arduino/DAQlib */
+void __delayMicroseconds(uint64_t us) 
+{
+	__time_info.usec += us;
+}
+
+/* replacement delay from Arduino/DAQlib */
+void __delay(unsigned long ms)
+{
+	__delayMicroseconds(((uint64_t)ms) * 1000);
+}
+
+/* replacement time from time.h */
+int __time(int *seconds)
+{
+	uint64_t us = __micros();
+	int s = (int)(us/1000000);
+	if (seconds) {
+		*seconds = s;
+	}
+	return s;
+}
+
+/* replacement usleep from unistd.h */
+int __usleep(unsigned long microseconds) 
+{
+	__delayMicroseconds(microseconds);
+}
+
+/* replacement sleep from unistd.h */
+unsigned int __sleep(unsigned int seconds)
+{
+	__delayMicroseconds((uint64_t)seconds*1000000);
+}
+
+/* replacement from time.h */
+int __nanosleep(const __timespec *req, __timespec *rem)
+{
+	uint64_t usec = req->tv_nsec/1000 + ((uint64_t)req->tv_sec) * 1000000;
+	__delayMicroseconds(usec);
+
+	if (rem) {
+		rem->tv_sec = 0;
+		rem->tv_nsec = 0;
+	}
+
+	return 0;
+}
+
+/* replacement gettime */
+int __clock_gettime(__clockid_t clk_id, __timespec *tp)
+{
+	uint64_t usec = __micros();
+	unsigned long sec = (unsigned long)(usec / 1000000);
+	usec = usec % 1000000;
+	tp->tv_nsec = (long)(usec*1000);
+	tp->tv_sec = (long)sec;
+
+	return 0;
+}
+
+/* replacement Sleep from Windows.h */
+void __Sleep(DWORD ms)
+{
+	__delay(ms);
+}
+
+/* replacement system time from Windows.h */
+void __GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime)
+{
+	if (lpSystemTimeAsFileTime) {
+		uint64_t usec = __micros();
+		uint64_t tsec = usec * 10;  /* 100 ns intervals */
+
+		lpSystemTimeAsFileTime->dwHighDateTime = (DWORD)(tsec >> 32);
+		lpSystemTimeAsFileTime->dwLowDateTime = (DWORD)(tsec & 0xFFFFFFFF);
+	}
 }
