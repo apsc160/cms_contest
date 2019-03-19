@@ -40,6 +40,8 @@ You should be able to test your program using the usual DAQ simulator.
 
 Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminalTiming.c` file).  The program is set to run for a specified amount of time, and print the DAQ outputs at a specified time interval.
 
+**NOTE:** the command-line simulator will handle inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
+
 ### Input Format
 
 The command-line simulator will read the following values from standard input when initialized:
