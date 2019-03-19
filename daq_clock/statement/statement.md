@@ -55,13 +55,13 @@ For example,
 181.00 0 0
 241.00 0 0
 ```
-initializes the time to `12:51`, and then indicates that event times occur after 1 second, 61 seconds, 121 seconds, 181 seconds, and 241 seconds.  The switches - which are to be ignored - are `OFF` at all these times.
+initializes the time to `12:59`, and then indicates that event times occur after 1 second, 61 seconds, 121 seconds, 181 seconds, and 241 seconds.  The switches - which are to be ignored - are `OFF` at all these times.
 
 The program will continue reading times and inputs until either no more data remains, or the next item is invalid (e.g. not a number).  At that point, `continueSuperLoop()` will return `FALSE` and the program should exit.
 
 ### Output Format
 
-The first line in the output will contain the DAQ setup number, printed by the command-line simulator.
+The first line in the output will contain the DAQ setup number, which is printed by the command-line simulator.
 
 At each event time specified in the input file, the simulator will print the current time to 2 decimal places, followed by the values of all displays at that time.
 
@@ -82,8 +82,31 @@ At each event time specified in the input file, the simulator will print the cur
 ### Output
 ```default
 4
-
-
+1.00
+              _   _   _          
+           |  _| |_  |_|         
+           | |_   _|  _|         
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+61.00
+                  _   _          
+               | | | | |         
+               | |_| |_|         
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+121.00
+                  _              
+               | | |   |         
+               | |_|   |         
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+181.00
+                  _   _          
+               | | |  _|         
+               | |_| |_          
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+241.00
+                  _   _          
+               | | |  _|         
+               | |_|  _|         
+ ___ ___ ___ ___ ___ ___ ___ ___ 
 ```
 
 ### Explanation
@@ -108,23 +131,13 @@ If you do not have the library and simulator installed, you can manually add the
 
 The double-quotes informs the compiler to search for the header in the current directory, whereas the angle-brackets tell the compiler to search for the header in a set of system-dependent paths.
 
-#### Program Inputs
+### Program Inputs
 
-The command-line simulator will read times and DAQ inputs from standard input.  To make it easier to test your programs with various inputs, you can redirect the contents of a text file to standard input.
+The command-line simulator will read times and DAQ inputs from standard input.  To make it easier to test your programs with various inputs, you can set `stdin` to read from a text file rather than from the console window.
 
-In Visual Studio you can do this by setting arguments in the project settings:
-
-- Navigate to 
-  - **Project > Properties... > Configuration Properties > Debugging**
-- Set the **Command Arguments** field to 
-
-  - `< "$(ProjectDir)input.txt"`
-
-  where `input.txt` is in your main project folder and contains the desired input values
-
-Otherwise, at the top of your `main(...)` function, you can tell `C` to perform the redirection using
+To redirect input from a file, enter the following command at the start of your `main(...)` function, 
 ```c
    freopen("input.txt", "r", stdin);  /* redirect input from file */
 ```
-Remember to remove this line before submission.
+where the file `input.txt` is the desired input file.  **Remember to remove this line before submission.**
 
