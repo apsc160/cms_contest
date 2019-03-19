@@ -11,7 +11,9 @@ The DAQ module with configuration `2` has two digital inputs (push-buttons) and 
 
 We will use this to simulate a traffic-light system, with two sensors to detect when a pedestrian or vehicle is waiting (one button for each perpendicular direction).
 
-![traffic light diagram](./assets/traffic_light_triggered.png)
+<img style="max-width: 100%; width:400px;" href="./assets/traffic_light_triggered.png" alt="traffic light diagram"/>
+
+![traffic light diagram]()
 
 The first three LEDs correspond to the Green-Yellow-Red lights in the East-West direction.  The last three LEDs correspond to the Green-Yellow-Red lights in the North-South direction.  The first button (`BUTTON0`) is used to indicate a pedestrian or vehicle is waiting in the East-West direction, and the second button (`BUTTON1`) for someone waiting in the the North-South direction.
 

@@ -8,7 +8,7 @@ submission_format:
 
 # Restrictions
 token_mode: "disabled"
-time_limit: 5
+time_limit: 30
 memory_limit: 256
 
 # Test cases use standard input/output
