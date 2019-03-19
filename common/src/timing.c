@@ -1,16 +1,15 @@
 #include "timing.h"
-#include <stdint.h>
 
 /* advance by 0.1 ms every call to time function */
 #define AUTO_TIME_STEP 100
 
 /* time storage */
 static struct {
-	volatile unsigned long usec;
+	uint64_t usec;
 } __time_info = { 0 };
 
 /* replacement micros from Arduino/DAQlib */
-unsigned long __micros(void)
+uint64_t __micros(void)
 {
 	/* auto-advance */
 	__time_info.usec += AUTO_TIME_STEP;
@@ -20,11 +19,11 @@ unsigned long __micros(void)
 /* replacement millis from Arduino/DAQlib */
 unsigned long __millis(void)
 {
-	return __micros()/1000;
+	return (unsigned long)(__micros()/1000);
 }
 
 /* replacement delay from Arduino/DAQlib */
-void __delayMicroseconds(unsigned long us) 
+void __delayMicroseconds(uint64_t us) 
 {
 	__time_info.usec += us;
 }
@@ -32,13 +31,13 @@ void __delayMicroseconds(unsigned long us)
 /* replacement delay from Arduino/DAQlib */
 void __delay(unsigned long ms)
 {
-	__delayMicroseconds(ms * 1000);
+	__delayMicroseconds(((uint64_t)ms) * 1000);
 }
 
 /* replacement time from time.h */
 int __time(int *seconds)
 {
-	unsigned long us = __micros();
+	uint64_t us = __micros();
 	int s = (int)(us/1000000);
 	if (seconds) {
 		*seconds = s;
@@ -55,13 +54,13 @@ int __usleep(unsigned long microseconds)
 /* replacement sleep from unistd.h */
 unsigned int __sleep(unsigned int seconds)
 {
-	__delayMicroseconds(seconds*1000000);
+	__delayMicroseconds((uint64_t)seconds*1000000);
 }
 
 /* replacement from time.h */
 int __nanosleep(const __timespec *req, __timespec *rem)
 {
-	unsigned long usec = req->tv_nsec/1000 + req->tv_sec * 1000000;
+	uint64_t usec = req->tv_nsec/1000 + ((uint64_t)req->tv_sec) * 1000000;
 	__delayMicroseconds(usec);
 
 	if (rem) {
@@ -75,11 +74,11 @@ int __nanosleep(const __timespec *req, __timespec *rem)
 /* replacement gettime */
 int __clock_gettime(__clockid_t clk_id, __timespec *tp)
 {
-	unsigned long usec = __micros();
-	unsigned long sec = usec / 1000000;
+	uint64_t usec = __micros();
+	unsigned long sec = (unsigned long)(usec / 1000000);
 	usec = usec % 1000000;
-	tp->tv_nsec = usec*1000;
-	tp->tv_sec = sec;
+	tp->tv_nsec = (long)(usec*1000);
+	tp->tv_sec = (long)sec;
 
 	return 0;
 }
@@ -94,10 +93,10 @@ void __Sleep(DWORD ms)
 void __GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime)
 {
 	if (lpSystemTimeAsFileTime) {
-		uint64_t usec = (uint64_t)__micros();
+		uint64_t usec = __micros();
 		uint64_t tsec = usec * 10;  /* 100 ns intervals */
 
-		lpSystemTimeAsFileTime->dwHighDateTime = (unsigned long)(tsec >> 32);
-		lpSystemTimeAsFileTime->dwLowDateTime = (unsigned long)(tsec & 0xFFFFFFFF);
+		lpSystemTimeAsFileTime->dwHighDateTime = (DWORD)(tsec >> 32);
+		lpSystemTimeAsFileTime->dwLowDateTime = (DWORD)(tsec & 0xFFFFFFFF);
 	}
 }

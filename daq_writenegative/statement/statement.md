@@ -50,7 +50,7 @@ at the end of the corresponding super loop iteration
 0 0
 42
 0 0
--100
+-96
 ```
 
 ### Output
@@ -70,8 +70,8 @@ at the end of the corresponding super loop iteration
                            | |_  
  ___ ___ ___ ___ ___ ___ ___ ___ 
                           _   _  
-                  _    | | | | | 
-                       | |_| |_| 
+                      _  |_| |_  
+                          _| |_| 
  ___ ___ ___ ___ ___ ___ ___ ___ 
 ```
 

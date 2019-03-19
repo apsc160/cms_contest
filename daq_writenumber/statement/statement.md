@@ -46,7 +46,7 @@ at the end of the corresponding super loop iteration
 0 0
 0
 0 0
-13
+96
 0 0
 12345
 0 0
@@ -66,9 +66,9 @@ at the end of the corresponding super loop iteration
                              | | 
                              |_| 
  ___ ___ ___ ___ ___ ___ ___ ___ 
-                              _  
-                           |  _| 
-                           |  _| 
+                          _   _  
+                         |_| |_  
+                          _| |_| 
  ___ ___ ___ ___ ___ ___ ___ ___ 
                   _   _       _  
                |  _|  _| |_| |_  
@@ -85,5 +85,5 @@ at the end of the corresponding super loop iteration
 - The DAQ is initialized with setup number 4, and the displays are all initially blank `___` on the first call to `continueSuperLoop()`
 - The first line of input (and every second line thereafter) corresponds to the values of the input switches, which are ignored
 - The second input line `0` tells us to display the digit 0
-- The fourth input line `13` tells us to display the number 13
+- The fourth input line `96` tells us to display the number 96
 - etc...
