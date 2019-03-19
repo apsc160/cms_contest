@@ -1,5 +1,5 @@
 # Task basics
-name: "daq_clock"
+name: "clock"
 category: "DAQ"
 title: "Clock"
 release_time: "2019-01-01 08:00:00"
