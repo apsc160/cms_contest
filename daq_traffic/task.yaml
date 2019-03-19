@@ -22,5 +22,5 @@ testcases:
   - {codename: "00", input: "input/input00.txt", output: "output/output00.txt", public: true}
   - {codename: "01", input: "input/input01.txt", output: "output/output01.txt", public: true}
   - {codename: "02", input: "input/input02.txt", output: "output/output02.txt", public: true}
-  - {codename: "02", input: "input/input03.txt", output: "output/output03.txt", public: true}
+  - {codename: "03", input: "input/input03.txt", output: "output/output03.txt", public: true}
 
