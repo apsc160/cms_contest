@@ -16,14 +16,14 @@ We will use this to simulate a traffic-light system, with two sensors to detect 
 The first three LEDs correspond to the Green-Yellow-Red lights in the East-West direction.  The last three LEDs correspond to the Green-Yellow-Red lights in the North-South direction.  The first button (`BUTTON0`) is used to indicate a pedestrian or vehicle is waiting in the East-West direction, and the second button (`BUTTON1`) for someone waiting in the the North-South direction.
 
 The traffic lights should operate as follows:
-- the East-West lights should be initialized to green, and the North-South lights to red
-- in the absence of any digital inputs, whichever light is green should remain green, while the other remains red
-- otherwise, the lights will alternate between the directions
-- if a light in a particular direction is red *and* its corresponding sensor button is detected as `ON`, then
-  - if the opposing light has been green for longer than 5 seconds, the opposing green light should *immediately* transition to yellow
-  - otherwise, the system should wait until the opposing light has been green for a total of 5 seconds, then immediately begin the transition to yellow then red
-  - when transitioning, the yellow light should be on for a total of 2 seconds, followed by a period of 1 second when both lights are red
-- if the light in a particular direction is green or yellow the button is to be ignored
+- The East-West lights should be initialized to green, and the North-South lights to red
+- In the absence of any digital inputs, whichever light is green should remain green, while the other remains red
+- Otherwise, the lights should alternate between the directions according to the following rules
+    - If a light in a particular direction is red *and* its corresponding sensor button is detected as `ON`, then
+        - If the opposing light has been green for longer than 5 seconds, the opposing green light should *immediately* transition to yellow
+        - Otherwise, the system should wait until the opposing light has been green for a total of 5 seconds, then immediately begin the transition to yellow then red
+        - When transitioning, the yellow light should be on for a total of 2 seconds, followed by a period of 1 second when both lights are red
+    - If the light in a particular direction is green or yellow the button is to be ignored
 
 Just like a true traffic light system, pressing a button multiple times or holding it down for an extended period will not make the light change any faster.
 
@@ -50,7 +50,7 @@ You should be able to test your program using the usual DAQ simulator.
 
 Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminalTiming.c` file).  The program is set to read and write values using standard I/O.
 
-**NOTE:** time command-line simulator will handle inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
+**NOTE:** the command-line simulator will handle inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
 
 ### Input Format
 
@@ -128,8 +128,8 @@ The DAQ was initialized with setup number `2`.  The remainder of the output cons
     - EW/NS: red from 12 s to 13 s
     - NS: green at 13 s
 - at 13.5 s, the EW button is triggered
-  - since the EW light is red at 13.5 s, this will cause the light to change at some point
-  - the NS light has *not* been green for 5 s yet, so it will turn green for a total of 5 s
+  - since the EW light is red at 13.5 s, this will cause the light to change (at some point)
+  - the NS light has *not* been green for 5 s yet, so it will remain green for a total of 5 s
     - NS: green from 13 s to 18 s
     - NS: yellow from 18 s to 20 s
     - NS/EW: red from 20 s to 21 s
@@ -152,25 +152,15 @@ If you do not have the library and simulator installed, you can manually add the
 
 The double-quotes informs the compiler to search for the header in the current directory, whereas the angle-brackets tell the compiler to search for the header in a set of system-dependent paths.
 
-#### Program Inputs
+### Program Inputs
 
-The command-line simulator will read times and DAQ inputs from standard input.  To make it easier to test your programs with various inputs, you can redirect the contents of a text file to standard input.
+The command-line simulator will read times and DAQ inputs from standard input.  To make it easier to test your programs with various inputs, you can set `stdin` to read from a text file rather than from the console window.
 
-In Visual Studio you can do this by setting arguments in the project settings:
-
-- Navigate to 
-  - **Project > Properties... > Configuration Properties > Debugging**
-- Set the **Command Arguments** field to 
-
-  - `< "$(ProjectDir)input.txt"`
-
-  where `input.txt` is in your main project folder and contains the desired input values
-
-Otherwise, at the top of your `main(...)` function, you can tell `C` to perform the redirection using
+To redirect input from a file, enter the following command at the start of your `main(...)` function, 
 ```c
    freopen("input.txt", "r", stdin);  /* redirect input from file */
 ```
-Remember to remove this line before submission.
+where the file `input.txt` is the desired input file.  **Remember to remove this line before submission.**
 
 ---
 
