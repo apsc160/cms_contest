@@ -1,5 +1,5 @@
 # Task basics
-name: "daq_traffic"
+name: "traffic"
 category: "DAQ"
 title: "Triggered Traffic Lights"
 release_time: "2019-01-01 08:00:00"
