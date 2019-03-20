@@ -11,4 +11,4 @@ set(SOURCES managers/grader.c)
 
 include(../common/GenerateTaskTargets.cmake)
 
-set_tests_properties(daq_clock_TEST_03 PROPERTIES TIMEOUT 30)
+set_tests_properties(daq_clock_TEST_03 PROPERTIES TIMEOUT 60)
