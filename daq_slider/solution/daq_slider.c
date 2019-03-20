@@ -3,7 +3,7 @@
 #include <math.h>
 
 /* symbolic constants */
-#define SIMULATOR 5
+#define SIMULATOR 3
 
 #define SLIDER   0
 #define LED0     0
@@ -31,6 +31,12 @@ void slider(void)
 	while (continueSuperLoop()) {
 		double v = analogRead(SLIDER);
 		int rv = (int)round(v);
+		if (rv < 0) {
+			rv = 0;
+		} else if (rv > NUM_LEDS) {
+			rv = NUM_LEDS;
+		}
+
 		for (i = 0; i<rv; ++i) {
 			digitalWrite(LED0 + i, ON);
 		}
