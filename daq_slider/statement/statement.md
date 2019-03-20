@@ -2,7 +2,7 @@ The DAQ simulator with configuration 3 has a sliding potentiometer and 5 LEDs.  
 
 ![slider demo](./assets/slider.gif)
 
-Write a simple program that reads the voltage from the potentiometer, and turns on all LEDs up to the rounded voltage value minus one (i.e.~zero volts corresponds to all LEDs `OFF`, and five volts to all LEDs `ON`).  For example, an input voltage of 2.30 volts would light up LEDs 0 and 1.  An input voltage of 3.62 volts would light up LEDs 0, 1, 2, and 3.  You may assume that midpoints between voltages round up (i.e. 2.5 rounds up to 3.00).  If the voltage is negative, turn all LEDs `OFF`, and if the voltage is greater than or equal to 5.5 V, turn all LEDs `ON`.
+Write a simple program that reads the voltage from the potentiometer, and turns on all LEDs up to the rounded voltage value minus one (i.e. zero volts corresponds to all LEDs `OFF`, and five volts to all LEDs `ON`).  For example, an input voltage of 2.30 volts would light up LEDs 0 and 1.  An input voltage of 3.62 volts would light up LEDs 0, 1, 2, and 3.  You may assume that midpoints between voltages round up (i.e. 2.5 rounds up to 3.00).  If the voltage is negative, turn all LEDs `OFF`, and if the voltage is greater than or equal to 5.5 V, turn all LEDs `ON`.
 
 You are provided with the following functions in the DAQlib library:
 
