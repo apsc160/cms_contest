@@ -40,3 +40,4 @@ tasks:
   - daq_timing
   - daq_clock
   - daq_traffic
+  - daq_slider

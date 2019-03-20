@@ -33,6 +33,7 @@ add_subdirectory(daq_rotate_leds)
 add_subdirectory(daq_timing)
 add_subdirectory(daq_traffic)
 add_subdirectory(daq_clock)
+add_subdirectory(daq_slider)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
 add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
