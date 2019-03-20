@@ -52,7 +52,7 @@ At each event time specified in the input file, the simulator will print the cur
 
 ### Output
 ```default
-5
+3
 1.00 0 0 0 0 0
 2.00 1 1 0 0 0
 3.00 1 1 1 1 0
@@ -62,7 +62,7 @@ At each event time specified in the input file, the simulator will print the cur
 
 ### Explanation
 
-When the DAQ is initialized, the command-line simulator will print the setup number `5` to the current line.
+When the DAQ is initialized, the command-line simulator will print the setup number `3` to the current line.
 
 After this, the output shows the event times and corresponding LED outputs.
 - At 1.00 seconds, the analog voltage of the potentiometer was previously zero (from initialization), so all LEDs should be `OFF`.  The analog voltage is then set to 2.30 V.
