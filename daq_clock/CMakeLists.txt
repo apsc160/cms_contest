@@ -10,3 +10,5 @@ set(SOURCES managers/grader.c)
 # set(SOURCES attachments/DAQlibTerminalTiming.c)
 
 include(../common/GenerateTaskTargets.cmake)
+
+set_tests_properties(daq_clock_TEST_03 PROPERTIES TIMEOUT 30)

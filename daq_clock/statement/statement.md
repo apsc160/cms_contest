@@ -49,7 +49,7 @@ Each line contains
 For example,
 ```default
 12:59
-1.00
+1.00 0 0
 61.00 0 0
 121.00 0 0
 181.00 0 0
