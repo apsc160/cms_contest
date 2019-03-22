@@ -20,7 +20,9 @@ A main program is provided for you that reads an integer in the range [0, 999999
  
 It is your job to implement this new function.  You are provided with the following:
 
-- `void displayWrite(int val, int position)`: writes a binary-encoded value to the given display position to turn on/off the corresponding LED segments
+- `int setupDAQ(int setupNum)`: initializes the device with the provided configuration number, returns 1 on success and 0 on failure.
+- `int continueSuperLoop(void)`: checks the status of the device, returning 1 if ready and 0 if the device was shut down.
+- `void displayWrite(int val, int position)`: writes a binary-encoded value to the given display position to turn on/off the corresponding LED segments.
 
 ## Input Format
 
