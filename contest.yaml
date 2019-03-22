@@ -41,3 +41,4 @@ tasks:
   - daq_clock
   - daq_traffic
   - daq_slider
+  - daq_temperature
