@@ -2,7 +2,7 @@ The DAQ simulator with configuration 5 has two digital input switches (digital i
 
 Write a program that reads from the temperature sensor, converts the voltage values to temperature in degrees Celsius, and displays the converted value on a set of 7-segment displays.
 
-![temperature demo](./assets/temperate.gif)
+![temperature demo](./assets/temperature.gif)
 
 The temperature sensor (e.g. TMP36), has a linear relationship between measured voltage and ambient temperature.  According to the [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/tmp35_36_37.pdf), 
 
@@ -58,8 +58,32 @@ At each event time specified in the input file, the simulator will print the cur
 
 ### Output
 ```default
-3
-
+5
+0.00
+                                 
+                                 
+                                 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+1.00
+                      _       _  
+                      _|   | | | 
+                     |_    |.|_| 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+2.00
+                      _   _   _  
+                      _|  _| | | 
+                     |_  |_ .|_| 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+3.00
+                          _   _  
+                       | |_| |_  
+                       | |_|. _| 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
+4.00
+                          _   _  
+                       | |_| |_  
+                       | |_|.|_| 
+ ___ ___ ___ ___ ___ ___ ___ ___ 
 ```
 
 ### Explanation
@@ -71,7 +95,7 @@ After this, the output shows the event times and corresponding temperatures.
 - At 1.00 seconds, the voltage was initially 0.710 V, which corresponds to the temperature 21.0 Celsius, shown on the displays.  The analog voltage is then set to 0.720 V.
 - At 2.00 seconds, the voltage was initially 0.720 V, which corresponds to the temperature 22.0 Celsius, shown on the displays.  The analog voltage is then set to 0.6851 V.
 - At 3.00 seconds, the voltage was initially 0.6851 V, which corresponds to the temperature 18.51 Celsius, which rounds to the 18.5 shown on the displays.  The analog voltage is then set to 0.6855 V.
-- At 4.00 seconds, the voltage was initially 0.6855 V, which corresponds to the temperature 18.55 Celsius, which rounds up to 18.56 shown on the displays.
+- At 4.00 seconds, the voltage was initially 0.6855 V, which corresponds to the temperature 18.55 Celsius, which rounds up to 18.6 shown on the displays.
 ---
 
 ### Testing
