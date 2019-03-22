@@ -6,9 +6,9 @@ Write a program that reads from the temperature sensor, converts the voltage val
 
 The temperature sensor (e.g. TMP36), has a linear relationship between measured voltage and ambient temperature.  According to the [datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/tmp35_36_37.pdf), 
 
-$$T_C & = 100 *(\mathrm{voltage) - 0.5),$$
+$$T_C & = 100 *(\mathrm{voltage} - 0.5),$$
 
-where $T_C$ is temperature in Celsius, and voltage is measured in units of volts.  Temperature should be written accurate to *one decimal place* (i.e. rounded to the nearest 0.1$^\circ C$).  To round, follow the rules of the `round(...)` function found in `<math.h>`.  For full marks, your program should also work for negative temperatures.
+where $T_C$ is temperature in Celsius, and voltage is measured in units of volts.  Temperature should be written accurate to *one decimal place* (i.e. rounded to the nearest 0.1$^\circ$C).  To round, follow the rules of the `round(...)` function found in `<math.h>`.  For full marks, your program should also work for negative temperatures.
 
 You are provided with the following functions in the DAQlib library:
 
