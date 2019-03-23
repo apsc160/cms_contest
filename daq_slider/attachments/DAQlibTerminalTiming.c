@@ -1,9 +1,8 @@
 /*=============================================================================
- * DAQlib "Terminal - Timing" Implementation (no simulator or hardware support)
+ * DAQlib "Terminal" Implementation (no simulator or hardware support)
  *
  * This implementation reads and writes from/to the standard I/O streams 
- * (stdin, stdout).  This is a modified version, in which inputs and outputs
- * are processed at specific times in program execution.
+ * (stdin, stdout). 
  * 
  * In setupDAQ(...), the setup number is printed to standard output, regardless 
  * of success or failure.
@@ -507,10 +506,10 @@ void delayMicroseconds(unsigned int us) {
   }
 
   /* delay remaining microseconds */
-  us1 = micros();
-  diff = micros()-us1;
+  us1 = __micros();
+  diff = __micros()-us1;
   while (diff < us) {
-    diff = micros()-us1;
+    diff = __micros()-us1;
   }
 }
 
