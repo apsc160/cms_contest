@@ -22,15 +22,21 @@ You are provided with the following functions:
 - `int digitalRead(int channel)`: reads and returns a digital value from the given digital input channel
 - `void digitalWrite(int channel, int val)`: writes a digital value to the given digital output channel
 
-## Input Format
+---
 
-**NOTE:** reading from the standard input is handled for you by the provided `DAQlib` library.
+## Evaluation
+
+You should be able to test your program using the usual DAQ simulator.  
+
+Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminal.c` file).  The program is set to read and write values using standard I/O.
+
+**NOTE:** the command-line simulator will handle all of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
+
+## Input Format
 
 For the command-line simulator, each line in the input corresponds to the values of the input sensors at the beginning of each iteration of the "super" loop.  In this case, the values correspond to the states of the four digital push-buttons.
 
 ## Output Format
-
-**NOTE:** the output is handled for you by the provided `DAQlib` library.
 
 Outputs in the command-line simulator are as follows:
 - The first line consists of the setup number used to initialize the device

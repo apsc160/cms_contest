@@ -1,0 +1,4 @@
+strlen_safe "coconuts" 9
+strlen_safe "coconuts" 5
+strlen_safe "coconuts" 22
+strlen_safe "" 1

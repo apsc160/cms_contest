@@ -1,0 +1,4 @@
+strcat_safe "two" 20 "halves" 20
+strcat_safe "two" 2 "halves" 20
+strcat_safe "two" 8 "stepladder" 20
+strcat_safe "" 20 "two" 20

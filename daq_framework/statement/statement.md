@@ -74,6 +74,8 @@ This online task uses a modified command-line simulator.  The command-line simul
 
 If there are no more lines of input, or if the next input line contains an invalid character, then `continueSuperLoop()` will return `FALSE` (0), signalling that your control loop should exit.
 
+The command-line simulator will read inputs and print outputs automatically.  Do not add any `printf`/`scanf` statements that were not explicitly asked for in the problem statement.
+
 ## Input Format
 
 The first line of input consists of the setup number.

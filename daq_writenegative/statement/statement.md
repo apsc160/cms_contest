@@ -24,15 +24,21 @@ You are provided with the following:
 
 - `void displayWrite(int val, int position)`: writes a binary-encoded value to the given display position to turn on/off the corresponding LED segments
 
-## Input Format
+---
 
-**NOTE:** reading from standard input is handled for you by the `DAQlib` library and the code provided.
+## Evaluation
+
+You should be able to test your program using the usual DAQ simulator.  
+
+Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminal.c` file).  The program is set to read and write values using standard I/O.
+
+**NOTE:** the command-line simulator and provided code will handle all of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements apart from the ones in the template.
+
+## Input Format
 
 If using the command-line simulator, each iteration of the super loop corresponds to two lines in the input.  The first line contains the values of the two digital input switches, which are to be ignored.  The second is the number to be written to the displays.
 
 ## Ouput Format
-
-**NOTE:** the output is handled for you by the provided `DAQlib` library.
 
 In the command-line simulator, 
 - the first line indicates the setup number used to initialize the DAQ

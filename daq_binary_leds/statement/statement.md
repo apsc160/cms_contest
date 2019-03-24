@@ -29,11 +29,21 @@ Remember to initialize the module with configuration 2 (without prompting the us
 - `int continueSuperLoop(void)`: checks the status of the device, returning 1 if ready and 0 if the device was shut down.
 - `void digitalWrite(int channel, int val)`: writes a digital value to the given digital output channel.
 
+---
+
+## Evaluation
+
+You should be able to test your program using the usual DAQ simulator.  
+
+Your code will be evaluated using a command-line simulator (see the attached `DAQlibTerminal.c` file).  The program is set to read and write values using standard I/O.
+
+**NOTE:** the command-line simulator will handle most of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements, except in promptint the user for an integer and reading the response.
+
 ## Input Format
 
 The input will consist of integers entered by the user, each on a new line.
 
-For use with the command-line version of the simulator, the input will also contain lines of data corresponding to the digital input values of the two digital push-buttons.  These are to be ignored by your program.
+For use with the command-line version of the simulator, the input will also contain lines of data corresponding to the digital input values of the two digital push-buttons.  The command-line simulator will read these values for you automatically. These values are to be ignored by your program.
 
 
 ## Output Format
