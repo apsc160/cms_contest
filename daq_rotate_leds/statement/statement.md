@@ -43,7 +43,7 @@ You are provided with the following functions:
 - `void digitalWrite(int channel, int val)`: writes a digital value to the given digital output channel
 - `void delay(unsigned long milliseconds)` - pauses the program for the specified number of milliseconds
 
-### Notes:
+### Hints
 
 - Since each iteration depends on the previous, you will need to store the current "state"
 - You will also need to initialize the LEDs before the first loop iteration
@@ -67,15 +67,21 @@ usleep(500*1000);  /* input is time in microseconds */
 
 You may also use the built-in `delay(...)` function on the DAQ, which will work independent of your operating system.
 
-## Input Format
+---
 
-**NOTE:** reading from standard input is handled for you by the provided `DAQlib` library.
+## Evaluation
+
+You should be able to test your program using the usual DAQ simulator.  
+
+Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminal.c` file).  The program is set to read and write values using standard I/O.
+
+**NOTE:** the command-line simulator will handle all of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
+
+## Input Format
 
 For the command-line simulator, each line in the input corresponds to the values of the input sensors at each call to `continueSuperLoop()`.  In this case, the values correspond to the states of the two digital push-buttons.
 
 ## Ouput Format
-
-**NOTE:** the output is handled for you by the provided `DAQlib` library.
 
 For the command-line simulator, the first line in the output corresponds to the setup number used to initialize the DAQ.  Each following line in the output shows the status of the six LEDs at the next call to `continueSuperLoop()`.
 
