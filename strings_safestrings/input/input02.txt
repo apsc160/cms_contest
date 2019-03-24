@@ -1,0 +1,4 @@
+strcpy_safe "apples" 7 "pears" 6
+strcpy_safe "apples" 7 "peaches" 8
+strcpy_safe "apples" 7 "grapes" 15
+strcpy_safe "apples" 7 "" 10

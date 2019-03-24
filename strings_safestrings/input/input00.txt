@@ -1,0 +1,8 @@
+strlen_safe "hello, world" 13
+strlen_safe "hello, world" 5
+strcpy_safe "" 100 "I love apples!!" 16
+strcpy_safe "" 100 "I love apples!!" 1
+strcpy_safe "" 7   "I love apples!!" 16
+strcpy_safe "" 14  "cats"  5
+strcat_safe "cats" 14 " say" 5
+strcat_safe "cats say" 14 " meowzer" 9
