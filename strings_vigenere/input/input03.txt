@@ -1,0 +1,5 @@
+decrypt "twau bwuspyg xk stutei" "APSC"
+encrypt "this message is no longer secret" "APSC"
+decrypt "RCIJGDMST JPWX, KY XJP HKYCRI LSQX, YTNL EBI NURFWYWVTWO" "CLUE"
+encrypt "look at the stars" "YELLOW"
+encrypt "APSC 160: Introduction to Computation in Engineering Design" "UBC"

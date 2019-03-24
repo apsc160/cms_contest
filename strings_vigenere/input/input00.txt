@@ -1,0 +1,4 @@
+encrypt "THIS MESSAGE IS SECRET" "APSC"
+decrypt "TwAu BwUsPyG xK nD nOcYgR kGcGwV" "APSC"
+encrypt "Professor Plum, in the Dining Room, with the candlestick" "CLUE"
+decrypt "JSZV WR ESS QXLCG" "YELLOW"
