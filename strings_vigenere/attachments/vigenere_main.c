@@ -10,8 +10,8 @@
 /* headers */
 #include <stdio.h>
 
+/* symbolic constants */
 #define MAX_MESSAGE_LENGTH 250
-#define MAX_KEY_LENGTH     5
 
 /* function prototypes */
 void encrypt(char plaintext[], char key[], char ciphertext[]);
@@ -21,14 +21,17 @@ int main(void)
 {
 	/* test our vigenere encryption/decryption */
     char str[MAX_MESSAGE_LENGTH];
+
     encrypt("THIS MESSAGE IS SECRET", "APSC", str);
     printf("%s\n", str);
-    decrypt(str, "APSC", str);
+
+    decrypt("TwAu BwUsPyG xK nD nOcYgR kGcGwV", "APSC", str);
     printf("%s\n", str);
 
-    encrypt("THIS MESSAGE IS NO LONGER SECRET", "APSC", str);
+    encrypt("Professor Plum, in the Dining Room, with the candlestick", "CLUE", str);
     printf("%s\n", str);
-    decrypt(str, "APSC", str);
+
+    decrypt("JSZV WR ESS QXLCG", "YELLOW", str);
     printf("%s\n", str);
 
 	return 0;
