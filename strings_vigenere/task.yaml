@@ -1,9 +1,9 @@
 # Task basics
-name: "safestrings"
+name: "vigenere"
 category: "strings"
-title: "Safe String Functions"
+title: "Vigenère cipher"
 submission_format: 
-        - "safestrings.%l"
+        - "vigenere.%l"
 
 # Restrictions
 token_mode: "disabled"

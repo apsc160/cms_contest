@@ -36,6 +36,7 @@ add_subdirectory(daq_clock)
 add_subdirectory(daq_slider)
 add_subdirectory(daq_temperature)
 add_subdirectory(strings_safestrings)
+add_subdirectory(strings_vigenere)
 
 add_custom_target(output_files DEPENDS ${OUTPUT_FILES})
 add_custom_target(statement_pdfs DEPENDS ${STATEMENT_PDFS})
