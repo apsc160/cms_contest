@@ -4,11 +4,11 @@ int   strlen(char str[]);               /* returns the length of the string     
 char* strcpy(char dest[], char src[]);  /* copies src string to dest, returning dest  */
 char* strcat(char dest[], char src[]);  /* appends src onto dest, returning dest      */
 ```
-These functions, however, are known to be *unsafe* in practice: if the provided string is not a valid C-string (i.e. does not have a terminating `\0` character), then the functions will continue operating outside of the bounds of allowed memory.  This can lead to memory leaks, or worse, can leave your code susceptible to [buffer overflow attacks](https://en.wikipedia.org/wiki/Buffer_overflow).  This is the main reason why Visual Studio forces you to explicitly disable security warnings if you want to use one of these functions
+These functions, however, are known to be *unsafe* in practice: if the provided string is not a valid C-string (i.e. does not have a terminating `'\0'` character), then the functions will continue operating outside of the bounds of allowed memory.  This can lead to memory leaks, or worse, can leave your code susceptible to [buffer overflow attacks](https://en.wikipedia.org/wiki/Buffer_overflow).  This is the main reason why Visual Studio forces you to explicitly disable security warnings if you want to use one of these functions:
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 ```
-It is trying to coerce you into avoiding these functions.
+It is trying to coerce you into avoiding them, or to use alternate "safe" versions.
 
 Instead, we will re-implement *safe versions* of the above functions ourselves.  Complete the implementations for the following functions:
 
@@ -50,7 +50,7 @@ void strcpy_safe(char dest[], int dsize, char src[], int ssize);
  */
 void strcat_safe(char dest[], int dsize, char src[], int ssize);
 ```
-You are not allowed to use any of the functions contained in `<string.h>`.
+These versions should never go past the specified array sizes.  You are not allowed to use any of the functions contained in `<string.h>`.
 
 ### Submission
 
