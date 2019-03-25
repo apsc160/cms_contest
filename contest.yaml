@@ -44,3 +44,4 @@ tasks:
   - daq_temperature
   - strings_safestrings
   - strings_vigenere
+  - strings_palindrome
