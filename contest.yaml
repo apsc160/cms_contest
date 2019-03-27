@@ -42,6 +42,8 @@ tasks:
   - daq_traffic
   - daq_slider
   - daq_temperature
+  - daq_digitizer
   - strings_safestrings
   - strings_vigenere
   - strings_palindrome
+  - strings_translate
