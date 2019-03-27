@@ -4,7 +4,7 @@
 int main(void)
 {
 	
-	/* temperature implementation */
+	/* digitizer implementation */
 
 	return 0;
 }
