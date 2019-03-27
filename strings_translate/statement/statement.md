@@ -18,6 +18,7 @@ void translate(
 	char output[]
 );
 ```
+
 You may assume the following
 - The maximum word size is 100
 - Words consist of only letters (i.e. `a-zA-Z`)
@@ -57,7 +58,7 @@ printf("%s\n, output2);
 translate("I love Lucy!!", english, french, NUM_WORDS, output1);
 printf("%s\n", output1);
 
-translate("Imagine a world without programming", english, french, NUM_WORDS, output1);
+translate("Imagine a world without programming.", english, french, NUM_WORDS, output1);
 printf("%s, output1);
 ```
 

@@ -14,7 +14,7 @@ By carefully measuring voltages and angles, you determine the following calibrat
 
 You also carefully measure the arms to have lengths of 8.5 cm from point `A` to point `B`, and from point `B` to point `C`.  Using basic trigonometry, you determine the relationship between joint angles and positions $(x,y)$ to be given by
 
-$$\begin{aligned}\theta_2 & = \theta_1 + \theta_3 - \pi\\x & = AB\cos(\theta_1) + BC\cos(\theta_2)\\y & = AB\sin(\theta_1) + BC\sin(\theta_2)\end{aligned}$$
+$$ \begin{aligned}\theta_2 & = \theta_1 + \theta_3 - \pi\\\\x & = AB\cos(\theta_1) + BC\cos(\theta_2)\\\\y & = AB\sin(\theta_1) + BC\sin(\theta_2)\end{aligned} $$
 
 Write a program that does the following:
 
@@ -69,7 +69,7 @@ At each event time specified in the input file, the command-line simulator will 
 
 ---
 
-## Sample 1
+### Sample 1
 
 ### Input
 ```default
@@ -123,7 +123,7 @@ The user-prompt is first printed to the screen, followed by the setup number whi
 
 Using the above equations relating voltages to angles to positions, we have
 
-| Base (mV) | Elbow (mV) | $theta_1$ ($\circ$) | $theta_3$ ($\circ$) | $theta_2$ ($\circ$) | $x$ (mm) | $y$ (mm) |
+| Base (mV) | Elbow (mV) | $\theta_1$ ($^\circ$) | $\theta_3$ ($^\circ$) | $\theta_2$ ($^\circ$) | $x$ (mm) | $y$ (mm) |
 |---------|----------|--------|----------|---------|---------|---------|
 |   2000  |   2000   |  5.06  |  198.18  |  23.24  |  162.8  |  41.04  |
 |   2500  |   2500   | -19.89 |  172.48  | -27.41  |  155.4  | -68.05  |
@@ -138,7 +138,9 @@ The displays are initially blank since `SWITCH0` is initially `OFF`.  At 0.25 se
 
 See the attachments section for `sample_input_star.txt` and `sample_output_star.txt` which demonstrate an input-output pair for displaying the $(x,y)$ coordinates of a star shape traced using the DAQ.
 
-### Testing
+---
+
+## Testing
 
 You should be able to run and test your program at home or in the lab with the regular simulator.  Code that works perfectly on the simulator should also work perfectly on the command-line simulator used for evaluation.
 
