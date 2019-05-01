@@ -4,7 +4,7 @@ title: "Binary LEDs"
 category: "DAQ"
 release_time: "2019-03-11 08:00:00"
 submission_format: 
-        - "daq_binary_leds.%l"
+        - "daq_binaryleds.%l"
 
 # Restrictions
 token_mode: "disabled"

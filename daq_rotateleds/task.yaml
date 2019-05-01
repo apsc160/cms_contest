@@ -4,7 +4,7 @@ category: "DAQ"
 title: "Rotate LEDs"
 release_time: "2019-01-01 08:00:00"
 submission_format: 
-        - "daq_rotate_leds.%l"
+        - "daq_rotateleds.%l"
 
 # Restrictions
 token_mode: "disabled"
