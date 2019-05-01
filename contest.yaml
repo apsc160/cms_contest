@@ -33,10 +33,10 @@ tasks:
   - daq_framework
   - daq_indicator
   - daq_toggle
-  - daq_binary_leds
+  - daq_binaryleds
   - daq_writenumber
   - daq_writenegative
-  - daq_rotate_leds
+  - daq_rotateleds
   - daq_timing
   - daq_clock
   - daq_traffic

@@ -1,8 +1,9 @@
 /*=============================================================================
- * DAQlib "Terminal" Implementation (no simulator or hardware support)
+ * DAQlib "Terminal - Timing" Implementation (no simulator or hardware support)
  *
  * This implementation reads and writes from/to the standard I/O streams 
- * (stdin, stdout). 
+ * (stdin, stdout).  This is a modified version, in which inputs and outputs
+ * are processed at specific times in program execution.
  * 
  * In setupDAQ(...), the setup number is printed to standard output, regardless 
  * of success or failure.
@@ -49,9 +50,6 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
-
-/* ignore inputs */
-#define DAQ_IGNORE_INPUTS TRUE
 
 /* timing */
 #if defined(_WIN32) || defined(_WIN64)
@@ -355,7 +353,7 @@ static int __daq_process_events(void)
   /* process data */
   int success = TRUE;
 
-/* process events until we've caught up to current time */
+  /* process events until we've caught up to current time */
   while (success && (int64_t)(usec - __daq.next_event) >= (int64_t)0) {
 
     /*  print current values */

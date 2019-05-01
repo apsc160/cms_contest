@@ -6,34 +6,33 @@
  * are processed at specific times in program execution.
  * 
  * In setupDAQ(...), the setup number is printed to standard output, regardless 
- * of success or failure.  The following values are then read from standard 
- * input:
- * - process start time in seconds (double)
- * - process time interval in seconds (double) 
- * - termination time in seconds (double)
- * The simulator will then print/read outputs/inputs every "process time" 
- * until the termination time is reached.
+ * of success or failure.
  * 
- * At each process time, current outputs are written to 
- * stdout, and new values for device inputs are read from stdin
- * Outputs:
- *    - current process time
- *    - digital outputs
- *    - analog outputs
- *    - 7-segment display outputs (4 lines)
- * Inputs:
- *    - digital inputs
- *    - analog inputs
+ * The simulator will then sequentially read lines from standard input that
+ * include
+ *    - time of next event
+ *    - new input values at time of the event
+ *        - digital inputs (if any)
+ *        - analog inputs (if any)
+ * 
+ * At each event time, outputs are written to stdout:
+ *    - event time (2 decimal places)
+ *    - digital outputs (if any)
+ *    - analog outputs (if any)
+ *    - 7-segment display outputs (4 lines, if any)
+ * 
+ * The program will continue until there is no valid data read from stdin 
+ * (i.e. EOF or invalid token).  At that point, `continueSuperLoop()` will
+ * return FALSE.
  *
  * In "CUSTOM" mode setupDAQ(-2), the simulator reads the following setup from 
- * standard input:
+ * standard input upon initialization:
  *    - # digital input channels
  *    - # digital output channels
  *    - # analog input channels
  *    - # analog output channels
  *    - # seven-segment display components
  *
- * To disable reading of inputs entirely, set DAQ_IGNORE_INPUTS to TRUE below
  *======================================================================================*/
 
 #include <DAQlib.h>
@@ -52,9 +51,6 @@
 #define FALSE 0
 #endif
 
-/* ignore inputs */
-#define DAQ_IGNORE_INPUTS TRUE
-
 /* timing */
 #if defined(_WIN32) || defined(_WIN64)
   /* windows includes */
@@ -68,7 +64,7 @@
     #include <mach/mach.h>
   #endif
 #endif
-unsigned long micros(void);  /* microseconds that have passed */
+uint64_t __micros(void);  /* microseconds that have passed */
 
 /* configuration numbers and ranges */
 #define DAQ_SETUP_INVALID   (-9999)
@@ -80,7 +76,7 @@ unsigned long micros(void);  /* microseconds that have passed */
 /* DAQ storage */
 static struct {
   int setup_number;
-  long start_time;
+  uint64_t start_time;
   int digital_inputs_size;
   int* digital_inputs;
   int digital_outputs_size;
@@ -91,31 +87,33 @@ static struct {
   double* analog_outputs;
   int display_outputs_size;
   int* display_outputs;
-  /* process time control */
-  unsigned long process_time;
-  unsigned long process_interval;
-  unsigned long stop_time;
-} __daq = {DAQ_SETUP_INVALID, 0, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0, 0, 0};
+  int next_event_valid;     /* whether to continue */
+  uint64_t next_event;      /* time of next event */
+} __daq = {DAQ_SETUP_INVALID, 0, 0, NULL, 0, NULL, 0, NULL, 0, NULL, 0, NULL, FALSE, 0};
 
-/* read stop time, process interval, process start from standard input */
-static int __daq_read_process_control(void)
+/* read next event time from standard input */
+static int __daq_next_event(void)
 {
-  /* read times as doubles */
-  double start = 0;
-  double step = 0;
-  double stop = 0;
-  
-  int nread = scanf("%lf %lf %lf", &start, &step, &stop);
+  /* read time as double */
+  double event = 0;
 
-  /* convert to useconds */
-  __daq.stop_time = lround(stop*1000000);
-  __daq.process_interval = lround(step*1000000);
-  __daq.process_time = lround(start*1000000);
+  /* pause program time */
+  uint64_t start_time = __micros();
+  int success = TRUE;
 
-  /* reinitialize start time */
-  __daq.start_time += micros();
+  int nread = scanf("%lf", &event);
 
-  return (nread == 3);
+  if (nread == 1) {
+    /* convert to useconds */
+    __daq.next_event = (uint64_t)(event*1000000 + 0.5);
+  } else {
+    success = FALSE;
+  }
+
+  /* resume start time */
+  __daq.start_time += (__micros() - start_time);
+
+  return success;
 }
 
 /*  set up the DAQ in a specific mode */
@@ -125,13 +123,13 @@ int setupDAQ(int setupNum) {
   /* print configuration number */
   printf("%d\n", setupNum);
 
-  __daq.setup_number = setupNum;
   if ( ( (setupNum < DAQ_SETUP_MIN) || (setupNum > DAQ_SETUP_MAX) )
   		&& (setupNum != DAQ_SETUP_CUSTOM) ) {
     return FALSE;
   }
 
-  __daq.start_time = micros();
+  /* initilize values */
+  __daq.setup_number = setupNum;
   __daq.digital_inputs_size = 0;
   __daq.digital_outputs_size = 0;
   __daq.analog_inputs_size = 0;
@@ -148,7 +146,6 @@ int setupDAQ(int setupNum) {
       nread = scanf("%d", &(__daq.analog_inputs_size));
       nread = scanf("%d", &(__daq.analog_outputs_size));
       nread = scanf("%d", &(__daq.display_outputs_size));
-      __daq.start_time += micros();  /* restart time to ignore inputs */
       break;
     }
     case 0:  /*  2 toggle-switches, 2 potentiometers, 8 7-segment displays */
@@ -214,8 +211,13 @@ int setupDAQ(int setupNum) {
     __daq.display_outputs[i] = 0;
   }
 
-  /* read process control */
-  return __daq_read_process_control();
+  /* look for next event */
+  __daq.next_event_valid = __daq_next_event();
+
+  /* initialize start time */
+  __daq.start_time = __micros();
+
+  return TRUE;
 }
 
 /*  read DAQ inputs from stdin */
@@ -223,8 +225,7 @@ static int __daq_read_inputs(void) {
   int i = 0;
 
   /* ignore read time */
-  long start_time = micros();
-  long stop_time = start_time;
+  uint64_t start_time = __micros();
 
   /*  read digital inputs for next iteration */
   for (i = 0; i < __daq.digital_inputs_size; ++i) {
@@ -243,14 +244,17 @@ static int __daq_read_inputs(void) {
   }
 
   /* adjust time */
-  stop_time = micros();
-  __daq.start_time += (stop_time - start_time);
+  __daq.start_time += (__micros() - start_time);
 
   return TRUE;
 }
 
 /*  print DAQ outputs to stdout */
 static void __daq_print_outputs(void) {
+
+  /* current time */
+  double t = __daq.next_event/1000000.0;
+  printf("%.2lf", t);
 
   /*  digital output */
   if (__daq.digital_outputs_size > 0) {
@@ -269,9 +273,7 @@ static void __daq_print_outputs(void) {
   }
 
   /* separate from seven-segment display */
-  if (__daq.digital_outputs_size > 0 || __daq.analog_outputs_size > 0) {
-    printf("\n");
-  }
+  printf("\n");
   
   /*  seven-segment display */
   if (__daq.display_outputs_size > 0) {
@@ -334,34 +336,37 @@ static void __daq_terminate(void) {
   __daq.display_outputs_size = 0;
   __daq.start_time = 0;
   __daq.setup_number = DAQ_SETUP_INVALID;
-  __daq.stop_time = 0;
-  __daq.process_interval = 0;
-  __daq.process_time = 0;
+  __daq.next_event_valid = FALSE;
+  __daq.next_event = 0;
 }
 
 /* advances state based on current time */
-static int __daq_advance_process_control(void)
+static int __daq_process_events(void)
 {
-  unsigned long usec = micros();
+
+  if (!__daq.next_event_valid) {
+    return FALSE;
+  }
+
+  uint64_t usec = __micros();
 
   /* process data */
   int success = TRUE;
 
-  while (success && usec >= __daq.process_time) {
-    double t = __daq.process_time/1000000.0;
-    printf("%.2lf", t);
+  /* process events until we've caught up to current time */
+  while (success && (int64_t)(usec - __daq.next_event) >= (int64_t)0) {
 
     /*  print current values */
     __daq_print_outputs();
 
     /* read next line of inputs   */
-#if !defined DAQ_IGNORE_INPUTS || DAQ_IGNORE_INPUTS == FALSE
     success = __daq_read_inputs();
-#endif
 
-    /* advance process */
-    __daq.process_time  += __daq.process_interval;
+    /* check for next event */
+    success = success && __daq_next_event();    
   }
+
+  __daq.next_event_valid = success;
 
   return success;
 }
@@ -382,12 +387,7 @@ int continueSuperLoop(void) {
   /* ensure DAQ has been initialized */
   __daq_check_init();
 
-  success = __daq_advance_process_control();
-
-  /* terminate if next process step is after stop time */
-  if (__daq.process_time > __daq.stop_time) {
-    success = FALSE;
-  }
+  success = __daq_process_events();
 
   /* potentially terminate */
   if (!success) {
@@ -401,7 +401,7 @@ int continueSuperLoop(void) {
 /*  read digital value from an input channel */
 int digitalRead(int channel) {
   __daq_check_init();
-  __daq_advance_process_control();
+  __daq_process_events();
 
   if (channel < 0 || channel >= __daq.digital_inputs_size) {
     printf("\nError in calling digitalRead: invalid channel number %d\n", channel);
@@ -414,7 +414,7 @@ int digitalRead(int channel) {
 /*  write digital value to an output channel */
 void digitalWrite(int channel, int val) {
   __daq_check_init();
-  __daq_advance_process_control();
+  __daq_process_events();
 
   if (channel < 0 || channel >= __daq.digital_outputs_size) {
     printf("\nError in calling digitalWrite: invalid channel number %d\n", channel);
@@ -427,7 +427,7 @@ void digitalWrite(int channel, int val) {
 /*  read analog value from an input channel */
 double analogRead(int channel) {
   __daq_check_init();
-  __daq_advance_process_control();
+  __daq_process_events();
 
   if (channel < 0 || channel >= __daq.analog_inputs_size) {
     printf("\nError in calling analogRead: invalid channel number %d\n", channel);
@@ -440,7 +440,7 @@ double analogRead(int channel) {
 /*  write analog value to an output channel */
 void analogWrite(int channel, double val) {
   __daq_check_init();
-  __daq_advance_process_control();
+  __daq_process_events();
 
   if (channel < 0 || channel >= __daq.digital_inputs_size) {
     printf("\nError in calling analogWrite: invalid channel number %d\n", channel);
@@ -452,7 +452,7 @@ void analogWrite(int channel, double val) {
 /*  write a value to a seven-segment display, position 0 starts on the right */
 void displayWrite(int data, int position) {
   __daq_check_init();
-  __daq_advance_process_control();
+  __daq_process_events();
 
   if (position < 0 || position >= __daq.display_outputs_size) {
     printf("\nError in calling displayWrite: invalid position %d\n", position);
@@ -469,7 +469,7 @@ void displayWrite(int data, int position) {
 /* Windows implementation */
 
 /* number of microseconds that have passed */
-unsigned long micros(void) {
+uint64_t __micros(void) {
   FILETIME ft;
   uint64_t us;
 
@@ -482,7 +482,7 @@ unsigned long micros(void) {
   us = (((uint64_t)ft.dwHighDateTime) << 32) | (uint64_t)ft.dwLowDateTime;
   us = us / 10;  /* 100ns to us */
 
-  return (unsigned long)(us - __daq.start_time);
+  return us - __daq.start_time;
 }
 
 void delay(unsigned long ms) {
@@ -504,10 +504,10 @@ void delayMicroseconds(unsigned int us) {
   }
 
   /* delay remaining microseconds */
-  us1 = micros();
-  diff = micros()-us1;
+  us1 = __micros();
+  diff = __micros()-us1;
   while (diff < us) {
-    diff = micros()-us1;
+    diff = __micros()-us1;
   }
 }
 
@@ -537,7 +537,7 @@ void delayMicroseconds(unsigned int us) {
   nanosleep(&sleeptime, NULL);
 }
 
-unsigned long micros(void) {
+uint64_t __micros(void) {
   struct timespec tv;
   uint64_t us = 0;
 
@@ -561,11 +561,15 @@ unsigned long micros(void) {
 #endif
   us = ((uint64_t)(tv.tv_sec))*1000000UL;
   us += tv.tv_nsec/1000UL;
-  return (unsigned long)(us - __daq.start_time);
+  return us - __daq.start_time;
 }
 
 #endif /* WIN32 */
 
 unsigned long millis(void) {
-  return micros()/1000;
+  return (unsigned long)(__micros()/1000);
+}
+
+unsigned long micros(void){
+  return (unsigned long)__micros();
 }

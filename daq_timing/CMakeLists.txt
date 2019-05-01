@@ -9,4 +9,6 @@ set(SOURCES managers/grader.c)
 # attachment - real time
 # set(SOURCES attachments/DAQlibTerminalTiming.c)
 
+add_executable(daq_timing_input_generator input/generator.c)
+
 include(../common/GenerateTaskTargets.cmake)

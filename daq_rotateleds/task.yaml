@@ -1,5 +1,5 @@
 # Task basics
-name: "rotate_leds"
+name: "rotateleds"
 category: "DAQ"
 title: "Rotate LEDs"
 release_time: "2019-01-01 08:00:00"

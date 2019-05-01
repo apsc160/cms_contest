@@ -38,28 +38,39 @@ To implement the timing, you may also use any of the functions:
 
 You should be able to test your program using the usual DAQ simulator.  
 
-Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminalTiming.c` file).  The program is set to run for a specified amount of time, and print the DAQ outputs at a specified time interval.
+Your code will be evaluated using a modified command-line simulator (see the attached `DAQlibTerminalTiming.c` file).  The program is set to read and write values using standard I/O.
 
 **NOTE:** the command-line simulator will handle inputs/outputs for you.  Do not include your own `printf`/`scanf` statements.
 
 ### Input Format
 
-The command-line simulator will read the following values from standard input when initialized:
-- the first time, in seconds, to print outputs
-- the time-interval at which to print outputs
-- the total simulation time
+The standard program has no inputs.
+
+If using the command-line simulator, it will read the following values from standard input:
+- the time of the next event (seconds)
+- the new values for all input channels at the time of the event (to be ignored in this program)
+Data will continue to be read until there is no more valid input.
 
 For example
 ```default
-0.5 1.0 10.0
+0.5 0 0
+1.5 0 0
+2.5 0 0
+3.5 0 0
+4.5 0 0
+5.5 0 0
+6.5 0 0
+7.5 0 0
+8.5 0 0
+9.5 0 0
 ```
-will cause the program to print results starting at 0.5 seconds, every 1.0 seconds, until 10.0 seconds have elaspsed (i.e. at 0.5 s, 1.5 s, 2.5 s, etc...).  After 10 seconds, `continueSuperLoop()` will return `FALSE` and the program should exit.
+will cause the program to print results starting at 0.5 seconds, every 1.0 seconds, until 9.5 seconds have elaspsed (i.e. at 0.5 s, 1.5 s, 2.5 s, etc...).  After 9.5 seconds, `continueSuperLoop()` will return `FALSE` since there is no more valid input, and the program should exit.
 
 ### Output Format
 
 When the DAQ is first initialized, the command-line simulator will print the setup number used.
 
-At each designated "process" time, the simulator will print the current time to 2 decimal places, followed by the digital outputs.
+At each designated "process" time, as specified by the times in the input file, the simulator will print the current time to 2 decimal places, followed by the digital outputs.
 
 ---
 
@@ -67,7 +78,16 @@ At each designated "process" time, the simulator will print the current time to 
 
 ### Input
 ```default
-0.5 1.0 10.0
+0.5 0 0
+1.5 0 0
+2.5 0 0
+3.5 0 0
+4.5 0 0
+5.5 0 0
+6.5 0 0
+7.5 0 0
+8.5 0 0
+9.5 0 0
 ```
 
 ### Output
@@ -93,5 +113,31 @@ The DAQ was initialized with setup number `1`.  The remainder of the output cons
 - `LED1` turns `ON` at 2 seconds, `OFF` at 4 seconds, `ON` at 6 seconds, etc...
 - `LED1` turns `ON` at 3 seconds, `OFF` at 6 seconds, and `ON` at 9 seconds
 
+
+---
+
+### Testing
+
+You should be able to run and test your program at home or in the lab with the regular simulator.
+
+To try with the command-line simulator, download the file `DAQlibTerminalTiming.c` from the attachments section and add it to your project.  Note that you will still need to create a project of type `APSC160 - DAQ` so that your program can find the appropriate `<DAQlib.h>` header.  
+
+If you do not have the library and simulator installed, you can manually add the `DAQlib.h` header.  Download `DAQlib.h` from the attachments, add it to your project, and include it using double-quotes rather than `<>`:
+
+```c
+#include "DAQlib.h"
+```
+
+The double-quotes informs the compiler to search for the header in the current directory, whereas the angle-brackets tell the compiler to search for the header in a set of system-dependent paths.
+
+### Program Inputs
+
+The command-line simulator will read times and DAQ inputs from standard input.  To make it easier to test your programs with various inputs, you can set `stdin` to read from a text file rather than from the console window.
+
+To redirect input from a file, enter the following command at the start of your `main(...)` function, 
+```c
+   freopen("input.txt", "r", stdin);  /* redirect input from file */
+```
+where the file `input.txt` is the desired input file.  **Remember to remove this line before submission.**
 
 

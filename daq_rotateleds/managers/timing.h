@@ -7,11 +7,12 @@
 #include "Windows.h"
 #include "unistd.h"
 #include "time.h"
+#include <stdint.h>
 
 /* Arduino/DAQlib implementations */
 unsigned long __millis(void);
-unsigned long __micros(void);
+uint64_t __micros(void);
 void __delay(unsigned long ms);
-void __delayMicroseconds(unsigned long us);
+void __delayMicroseconds(uint64_t us);
 
 #endif

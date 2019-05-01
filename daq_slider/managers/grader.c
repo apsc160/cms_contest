@@ -1,5 +1,10 @@
 /*=============================================================================
- * DAQlib "Terminal - Timing" Implementation (no simulator or hardware support)
+ * DAQlib "Terminal - Timing" GRADING Implementation 
+ * Replaces timing events for "pseudo" time, bundle with replacement headers
+ * - timing.h
+ * - Windows.h
+ * - unistd.h
+ * - time.h
  *
  * This implementation reads and writes from/to the standard I/O streams 
  * (stdin, stdout).  This is a modified version, in which inputs and outputs
@@ -50,9 +55,6 @@
 #ifndef FALSE
 #define FALSE 0
 #endif
-
-/* ignore inputs */
-#define DAQ_IGNORE_INPUTS TRUE
 
 /* timing */
 #if defined(_WIN32) || defined(_WIN64)

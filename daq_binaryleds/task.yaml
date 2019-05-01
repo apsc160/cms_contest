@@ -1,5 +1,5 @@
 # Task basics
-name: "binary_leds"
+name: "binaryleds"
 title: "Binary LEDs"
 category: "DAQ"
 release_time: "2019-03-11 08:00:00"

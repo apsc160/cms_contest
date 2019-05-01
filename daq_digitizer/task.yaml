@@ -4,7 +4,7 @@ category: "DAQ"
 title: "DAQ 2D Digitizer"
 release_time: "2019-01-01 08:00:00"
 submission_format: 
-        - "digitizer.%l"
+        - "daq_digitizer.%l"
 
 # Restrictions
 token_mode: "disabled"

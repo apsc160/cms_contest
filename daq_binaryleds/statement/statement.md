@@ -37,7 +37,7 @@ You should be able to test your program using the usual DAQ simulator.
 
 Your code will be evaluated using a command-line simulator (see the attached `DAQlibTerminal.c` file).  The program is set to read and write values using standard I/O.
 
-**NOTE:** the command-line simulator will handle most of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements, except in promptint the user for an integer and reading the response.
+**NOTE:** the command-line simulator will handle most of the inputs/outputs for you.  Do not include your own `printf`/`scanf` statements, except in prompting the user for an integer and reading the response.
 
 ## Input Format
 
