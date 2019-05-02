@@ -10,6 +10,6 @@ export CPATH=$CPATH:.
 killall cmsProxyService
 
 # start services
-cmsLogService >> /var/log/cms/logservice.log &
-cmsRankingWebServer >> /var/log/cms/ranking.log &
-cmsResourceService -a 1 >> /var/log/cms/resource.log &
+cmsLogService >> /var/local/log/cms/logservice.log &
+cmsRankingWebServer >> /var/local/log/cms/ranking.log &
+cmsResourceService -a 1 >> /var/local/log/cms/resource.log &

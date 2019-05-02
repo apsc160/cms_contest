@@ -192,6 +192,11 @@ cmsLogService >> /var/local/log/cms/logservice.log &
 cmsRankingWebServer >> /var/local/log/cms/ranking.log &
 cmsResourceService -a 1 >> /var/local/log/cms/resource.log &
 ```
+These commands are all packaged in a bash script within this repository at `cms/start_cms.sh`, which can be run using
+```bash
+~/cms_contest/cms/start_cms.sh
+```
+
 The contest, admin and ranking webservers should all now be up and running, though they must be accessed via their port numbers:
 
 | Server      | Address                |
@@ -220,6 +225,15 @@ ProxyPassReverse /cms/admin/   http://localhost:8889/
 ProxyPass /cms/leaderboard/ http://localhost:8890/
 ProxyPassReverse /cms/leaderboard/ http://localhost:8890/
 ```
+These settings can be found in this repository under `cms/cms.proxy.conf`.  To enable the proxy configuration for all configured websites, copy the file to your apache configuration folder and create a symbolic link in the `conf-enabled` folder.  Again, you will need `sudo` rights for this:
+```bash
+su <sudo_user>
+sudo cp /home/cmsuser/cms/cms.proxy.conf /etc/apache2/conf-available
+sudo ln -s /etc/apache2/conf-available/cms.proxy.conf /etc/apache2/conf-enabled
+sudo service apache2 restart
+exit
+```
+
 
 This will allow you to access the webservers through the regular port 80 on your host:
 
