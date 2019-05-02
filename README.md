@@ -16,12 +16,11 @@ In this guide we assume you will be installing on an Ubuntu machine.  If not, se
 
 ### Prerequisites
 
-Run the following `apt` commands on modern Ubuntu systems to automatically install the necessary prerequisites:
+Run the following commands on modern Ubuntu systems to automatically install the necessary prerequisites:
 ```bash
 sudo apt install build-essential postgresql postgresql-client python3.6 \
 	 python3.6-dev python3-pip cppreference-doc-en-html cgroup-lite \
 	 libcap-dev zip git
-sudo pip3 install virtualenv
 ```
 
 ---
@@ -47,7 +46,7 @@ sudo apt install postgresql postgresql-client
 
 ### Configure Daemon User and Database
 
-We need to set up users and groups in order to run `cms` safely, and allow access to a `postgresql` database.
+We need to set up users and groups in order to run `cms` safely and allow access to a `postgresql` database.
 
 Create a user with limited permissions that will be used to run `cms`.  In this guide will call this user `cmsuser`.
 
@@ -87,32 +86,36 @@ su - cmsuser
 Create and activate a `python3.6` environment
 
 ```bash
+pip3 install virtualenv
 virtualenv -p /usr/bin/python3.6 ~/cms_venv
 source ~/cms_venv/bin/activate
 ```
 
 ### Installing CMS
 
-Clone the [forked git repository](https://github.com/apsc160/cms), and navigate inside the main directory.  You will also need to clone the `isolate` submodule, which will run the constestants' programs in an isolated environment.
+Clone the [forked git repository](https://github.com/apsc160/cms), and navigate inside the main directory.  You will also need to clone the `isolate` submodule, which will run the contestants' programs in an isolated environment.  We then need to build the prerequisites.
 
 ```bash
 git clone https://github.com/apsc160/cms.git 
 cd cms
 git submodule update --init
+python3 prerequisites.py build
 ```
 
-Next, we build and install [`isolate`](https://github.com/ioi/isolate.git), the program that allows us to safely run submissions in an isolated environment, as well as install important configuration files.  For this we need to temporarily switch to a `sudo` user.
+Next, we build and install [`isolate`](https://github.com/ioi/isolate.git), the program that allows us to safely run submissions in an isolated environment, as well as install important configuration files.  For this we need to temporarily switch to a `sudo` user and execute the prerequisites install command.
 
 ```bash
-su <sudo_user> -c "sudo python3 prerequisites.py install"
+su <sudo_user> 
+sudo python3 prerequisites.py install
+exit
 ```
 
 The script will ask about adding your user to the `cmsuser` group.  You can select `No` for this, since we already created a special `cmsuser`. 
 
-To complete the installation, build and install the python prerequisites, then build and install `cms`:
+To complete the installation, install the required python packages, then build and install `cms`:
 
 ```bash
-python3 prerequisites.py install
+pip3 install -r requirements.txt
 python3 setup.py install
 ```
 
@@ -131,14 +134,7 @@ then try again.
 
 ### Configuring CMS
 
-Copy the configuration files to the local `config` directory:
-
-```bash
-cp config/cms.conf.sample config/cms.conf
-cp config/cms.ranking.conf.sample config/cms.ranking.conf
-```
-
-Modify the configuration file `config/cms.conf`
+Modify the configuration file `/usr/local/etc/cms.conf`
 
 Update the `"database"` connection string to include your cms database username and password.  For example,
 ```bash
@@ -149,7 +145,7 @@ Modify the `"secret_key"` field with a unique random string.  An example of how 
 
 Modify the `"rankings"` connection string.  Change the username and password to something less obvious.
 
-Edit the file `config/cms.ranking.conf` to set the same username and password as the previous connection string.
+Edit the file `/usr/local/etc/cms.ranking.conf` to set the same username and password as the previous connection string.
 
 ### Initializing CMS
 
@@ -158,8 +154,91 @@ Create the initial database
 cmsInitDB
 ```
 
-Create an admin user
+Create a new admin user
 ```bash
-python3 cms/cmscontrib/AddAdmin.py <username> -p
+cmsAddAdmin <username> -p
 ```
-You will be prompted to enter a password for your new user.
+You will be prompted to enter a password for your new user.  This is the username and password you will use to log in to the admin webserver to update the contest details manually.
+
+### Importing the Contest
+
+Close the latest version of this contest from Git:
+```bash
+cd ~
+git clone https://github.com/apsc160/cms_contest.git
+```
+
+To import the contest, run the following:
+```
+cmsImportContest -L extended_yaml -i cms_contest
+```
+This will import all contests and tasks from the `cms_contest` folder and import them in the contest database.
+
+#### Updating an Existing Contest
+
+To update an existing contest (e.g. if the `cms_contest` content has been updated), then use the update flags
+```
+cmsImportContest -L extended_yaml -i -u -U cms_contest
+```
+This will import any new tasks, as well as update existing tasks and overall contest details.
+
+### Running the Server
+
+To run the server, we need to ensure the python virtual environment is active, adjust the `CPATH` environment variable to also check local directories (so students can use `#include <DAQlib.h>` instead of `#include "DAQlib.h"`), then start the log, ranking, and resource services:
+```bash
+source /home/cmsuser/cms_venv/bin/activate
+export CPATH=$CPATH:.
+cmsLogService >> /var/local/log/cms/logservice.log &
+cmsRankingWebServer >> /var/local/log/cms/ranking.log &
+cmsResourceService -a 1 >> /var/local/log/cms/resource.log &
+```
+The contest, admin and ranking webservers should all now be up and running, though they must be accessed via their port numbers:
+
+| Server      | Address                |
+|-------------|------------------------|
+| Contest     | http://localhost:8888/ |
+| Admin       | http://localhost:8889/ |
+| Leaderboard | http://localhost:8890/ |
+
+#### Apache Proxy Settings
+
+If you would like to access the contest server, admin server, and leaderboard with pretty URL names rather than port numbers, then we can set up an apache webserver to act as a proxy and forward to the correct ports.  Include the following apache configuration to enable proxy forwarding:
+
+```default
+ # setup the proxy
+<Proxy *>
+	Order allow,deny
+	Allow from all
+</Proxy>
+       
+ProxyPass /cms/contest/ http://localhost:8888/
+ProxyPassReverse /cms/contest/ http://localhost:8888/
+
+ProxyPass /cms/admin/   http://localhost:8889/
+ProxyPassReverse /cms/admin/   http://localhost:8889/
+
+ProxyPass /cms/leaderboard/ http://localhost:8890/
+ProxyPassReverse /cms/leaderboard/ http://localhost:8890/
+```
+
+This will allow you to access the webservers through the regular port 80 on your host:
+
+| Server      | Address                         |
+|-------------|---------------------------------|
+| Contest     | https://server/cms/contest/     |
+| Admin       | https://server/cms/admin/       |
+| Leaderboard | https://server/cms/leaderboard/ |
+
+#### Automatic Start via Cron
+
+In cases where your server may be reset, and you wish to automatically restart the contest server, you can create a simple bash script containing the previous run commands and set it to automatically launch via a `cron` job.  This contest repo contains such a script under the `cms` folder.
+
+Edit the crontab file:
+```bash
+crontab -e
+```
+and add the following line at the bottom:
+```
+  5  5  *   *   *     /home/cmsuser/cms_contest/cms/start_cms.sh
+```
+This will try to start the webservers every morning at 5:05 AM to ensure they are running.  There is no harm to trying to start them while they are still running.  
